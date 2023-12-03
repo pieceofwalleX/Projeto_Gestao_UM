@@ -1,5 +1,7 @@
 package BackEnd.Professor;
 
-public class Regente {
-    
+import BackEnd.UC;
+
+public class Regente extends Professor{
+    private UC uc;
 }
