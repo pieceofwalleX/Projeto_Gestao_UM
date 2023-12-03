@@ -3,6 +3,7 @@ package BackEnd.Listas;
 import java.util.ArrayList;
 
 import BackEnd.Professor.Professor;
+import BackEnd.Professor.Regente;
 
 public class ListProfessore {
      private ArrayList<Professor> lista;
@@ -32,5 +33,13 @@ public class ListProfessore {
             }
         }
         return false;
+    }
+    public boolean isRegente(String numMec){
+        for(Professor prof:lista){
+            if(numMec.equals(prof.getNumMec()) && prof instanceof Regente){
+                return false;
+            }
+        }
+        return true;
     }
 }

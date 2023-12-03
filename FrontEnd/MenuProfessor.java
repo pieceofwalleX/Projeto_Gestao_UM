@@ -12,7 +12,7 @@ public class MenuProfessor{
         
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        System.out.println("#-----Universidade-do-Minho-----#");
+        System.out.println("#.....Universidade-do-Minho.....#");
         System.out.println("#.Codigo de Professor >");
 
         id = in.nextLine();
@@ -26,7 +26,7 @@ public class MenuProfessor{
             Thread.sleep(800);
             return;
         }
-        System.out.println("#-------------------------------#");
+        System.out.println("#...............................#");
     }
 
     public static void newSumario(ListSumario listaSumarios,ListUC listaUC,ListProfessore listaProf) throws InterruptedException {
@@ -38,8 +38,8 @@ public class MenuProfessor{
 
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        System.out.println("#-----Universidade-do-Minho-----#");
-        System.out.println("#-------Professor-Sumario-------#");
+        System.out.println("#.....Universidade.do.Minho.....#");
+        System.out.println("#.......Professor.Sumario.......#");
         System.out.println("#                               #");
         System.out.println("#UC: ");
         idUC = in.nextInt();
@@ -48,7 +48,7 @@ public class MenuProfessor{
         if(inUCList){
             System.out.println("#Professor: ");
             idProf = in.nextLine();
-            inProfList = listaProf.checkID(idProf);
+            inProfList = listaProf.checkNumMec(idProf);
             if(inProfList){
                 s.setIdDisciplina(idUC);
                 s.setIdProfessor(idProf);
@@ -56,10 +56,10 @@ public class MenuProfessor{
                 s.setDescricao(in.nextLine());
                 listaSumarios.add(s, s.getDescricao());;
                 
-                System.out.println("#-------------------------------#");
+                System.out.println("#...............................#");
                 System.out.println("# Resgistrado Sumario           #");
                 listaSumarios.get(s);
-                System.out.println("#-------------------------------#");
+                System.out.println("#...............................#");
 
                 Thread.sleep(2200);
             }else{
@@ -80,15 +80,15 @@ public class MenuProfessor{
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("#-----Universidade-do-Minho-----#");
-            System.out.format("#-----------Professor-%s---------#\n",id);
+            System.out.println("#.....Universidade.do.Minho.....#");
+            System.out.format("#...........Professor.%s.........#\n",id);
             System.out.println("#                               #");
             System.out.println("#1. Criar Sumario               #");
             System.out.println("#2. Lista de Sumarios           #");
             System.out.println("#3. Unidades Curriculares\\UCs   #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
-            System.out.println("#-------------------------------#");
+            System.out.println("#...............................#");
             opcao = in.nextInt();
 
             switch (opcao) {

@@ -13,6 +13,8 @@ public class MenuGestaoUC {
             System.out.println("#-----------Gestao-UC-----------#");
             System.out.println("# Descricao da UC: ");
             uc.setDesignacao(in.nextLine());
+            System.out.println("# Num do Regente da UC: ");
+            uc.setDesignacao(in.nextLine());
             System.out.format("# Registada UC: %d , %s\t#\n",uc.getId(),uc.getDesignacao());
             System.out.println("#-------------------------------#");
             Thread.sleep(800);
