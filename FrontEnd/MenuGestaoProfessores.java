@@ -6,10 +6,12 @@ import BackEnd.Listas.ListProfessore;
 import BackEnd.Professor.Professor;
 
 public class MenuGestaoProfessores {
-    static Scanner in = new Scanner(System.in);
+    static final Scanner in = new Scanner(System.in);
     public static void addProf(ListProfessore listaProfessore) throws InterruptedException{
+            
             String data;
             Professor u = new Professor();
+            in.nextLine();
             System.out.println("#.....Universidade-do-Minho.....#");
             System.out.println("#......Gestao..Professores.....#");
             System.out.println("# Numero do Professor: ");
@@ -34,6 +36,7 @@ public class MenuGestaoProfessores {
 
     }
     public static void menu(ListProfessore listaProf) throws InterruptedException {
+    
         int opcao = 0;
         do{
             System.out.print("\033[H\033[2J");

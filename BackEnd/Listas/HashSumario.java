@@ -5,7 +5,7 @@ import java.util.Map;
 
 import BackEnd.Sumario;
 
-public class ListSumario {
+public class HashSumario {
       /*
         Usar HashMap em que receba uma classe que contenha o Id da Uc e do Professor em questao.
     */

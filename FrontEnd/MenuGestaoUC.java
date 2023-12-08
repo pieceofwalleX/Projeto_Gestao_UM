@@ -6,22 +6,27 @@ import BackEnd.UC;
 import BackEnd.Listas.ListUC;
 
 public class MenuGestaoUC {
-    static Scanner in = new Scanner(System.in);
+    static final Scanner in = new Scanner(System.in);
         public static void addUC(ListUC listaUC) throws InterruptedException{
+            in.nextLine();
+            String prof;
             UC uc = new UC(); 
             System.out.println("#-----Universidade-do-Minho-----#");
             System.out.println("#-----------Gestao-UC-----------#");
             System.out.println("# Descricao da UC: ");
             uc.setDesignacao(in.nextLine());
             System.out.println("# Num do Regente da UC: ");
+            prof = in.nextLine();
+            
             uc.setDesignacao(in.nextLine());
-            System.out.format("# Registada UC: %d , %s\t#\n",uc.getId(),uc.getDesignacao());
+            System.out.format("# Registada UC: %d , %s , %s\t#\n",uc.getId(),prof,uc.getDesignacao());
             System.out.println("#-------------------------------#");
             Thread.sleep(800);
             listaUC.adicionar(uc);
     }
     
     public static void gestaoUC(ListUC listaUC) throws InterruptedException{
+        
         int opcao = 0;
         do{
             System.out.print("\033[H\033[2J");

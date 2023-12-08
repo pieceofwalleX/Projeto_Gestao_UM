@@ -5,12 +5,14 @@ import BackEnd.*;
 import BackEnd.Listas.*;
 
 public class Menu {
+
+    static final Scanner in = new Scanner(System.in);
     public static void main(String[] args) throws InterruptedException {
         //Inicializar as Listas
         ListUC listaUC = new ListUC();
         ListProfessore listaProf = new ListProfessore();
-        ListSumario listaSumarios = new ListSumario();
-        Scanner in = new Scanner(System.in);
+        HashSumario listaSumarios = new HashSumario();
+       
         int opcao = 0;
     try{
         do{

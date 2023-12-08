@@ -5,9 +5,9 @@ import BackEnd.Listas.*;
 import BackEnd.*;
 
 public class MenuProfessor{
-
-    static Scanner in = new Scanner(System.in);
-    public static void authProf(ListSumario listaSumarios,ListUC listaUC,ListProfessore listaProf) throws InterruptedException { 
+    static final Scanner in = new Scanner(System.in);
+    public static void authProf(HashSumario listaSumarios,ListUC listaUC,ListProfessore listaProf) throws InterruptedException { 
+        
         String id;
         
         System.out.print("\033[H\033[2J");
@@ -29,8 +29,8 @@ public class MenuProfessor{
         System.out.println("#...............................#");
     }
 
-    public static void newSumario(ListSumario listaSumarios,ListUC listaUC,ListProfessore listaProf) throws InterruptedException {
-        Scanner in = new Scanner(System.in);
+    public static void newSumario(HashSumario listaSumarios,ListUC listaUC,ListProfessore listaProf) throws InterruptedException {
+    
         Sumario s = new Sumario();
         int idUC;
         String idProf;
@@ -73,8 +73,8 @@ public class MenuProfessor{
             return;
         }
     }
-    public static void menu(ListSumario listaSumarios,ListUC listaUC,ListProfessore listaProf,String id) throws InterruptedException{
-        Scanner in = new Scanner(System.in);
+    public static void menu(HashSumario listaSumarios,ListUC listaUC,ListProfessore listaProf,String id) throws InterruptedException{
+    
         int opcao = 0;
 
         do {
