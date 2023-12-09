@@ -1,22 +1,24 @@
 package BackEnd;
 
 import BackEnd.Listas.ListProfessore;
-import BackEnd.Professor.Regente;
+import BackEnd.Professor.Professor;
 
 public class UC {
     private static int nextId = 1;
     private int id;
     private String designacao;
     private ListProfessore listaProfessores;
-    private Regente regente;
+    private Professor regente;
 
     public UC(){
         designacao = "";
         id = nextId;
+        regente = null;
         nextId++;
     }
-    public UC(String designacao){
+    public UC(String designacao,Professor regente){
         this.designacao = designacao;
+        this.regente = regente;
         id = nextId;
         nextId++;
     }
@@ -30,10 +32,16 @@ public class UC {
     public void setDesignacao(String designacao){
         this.designacao = designacao;
     }
+    public void setRegente(Professor regente){
+        this.regente = regente;
+    }
     public int getId(){
         return id;
     }
     public String getDesignacao(){
         return designacao;
+    }
+    public Professor getRegente(){
+        return regente;
     }
 }

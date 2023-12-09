@@ -4,13 +4,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public enum tipoProfessor{
+public class Professor {
+    public enum tipoProfessor{
     Normal,
     Regente,
     Diretor
-}
+    }
 
-public class Professor {
     private String numMec;
     private String nome;
     private String data_inicio;
@@ -34,6 +34,9 @@ public class Professor {
     public void setNome(String nome){
         this.nome = nome;
     }
+    public void setCargo(tipoProfessor cargo){
+        this.cargo = cargo;
+    }
     public void setDataInicio(String data_inicio){
         this.data_inicio = data_inicio;
     }
@@ -42,6 +45,20 @@ public class Professor {
     }
     public String getNome(){
         return nome;
+    }
+    public String getCargoString(){
+        if(cargo == tipoProfessor.Normal){
+            return "Normal";
+        }else if(cargo == tipoProfessor.Regente){
+            return "Regente";
+        }else if(cargo == tipoProfessor.Diretor){
+            return "Diretor";
+        }else{
+            return "NULL";
+        }
+    }
+    public tipoProfessor getCargo(){
+        return cargo;
     }
     public String getDataInicio(){
         return data_inicio;

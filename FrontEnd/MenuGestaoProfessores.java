@@ -27,7 +27,7 @@ public class MenuGestaoProfessores {
             }
             u.setDataInicio(data);
             System.out.println("#...............................#");
-            System.out.format("# Resgistrado Professor \n#NUM: %s \n#Nome: %s \n#Data de Inicio: %s\n",u.getNumMec(),u.getNome(),u.transformData());
+            System.out.format("# Resgistrado Professor \n#NUM: %s \n#Nome: %s \n#Cargo: %s \n#Data de Inicio: %s\n",u.getNumMec(),u.getNome(),u.getCargoString(),u.transformData());
             System.out.println("#...............................#");
             Thread.sleep(2250);
             listaProfessore.adicionar(u);

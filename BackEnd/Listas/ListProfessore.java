@@ -3,7 +3,6 @@ package BackEnd.Listas;
 import java.util.ArrayList;
 
 import BackEnd.Professor.Professor;
-import BackEnd.Professor.Regente;
 
 public class ListProfessore {
      private ArrayList<Professor> lista;
@@ -18,7 +17,7 @@ public class ListProfessore {
         int elementos = 0;
         for(Professor prof:lista){
             if(print == true) {
-               System.out.format("# Numero: %s \n# Nome: %s \n# Inicio das funcoes: %s\n", prof.getNumMec(), prof.getNome(),prof.transformData());
+               System.out.format("# Numero: %s \n# Nome: %s \n# Cargo: %s\n# Inicio das funcoes: %s\n", prof.getNumMec(), prof.getNome(),prof.getCargoString(),prof.transformData());
                System.out.println("#-------------------------------#");
             }else{
                 elementos++;
@@ -34,10 +33,20 @@ public class ListProfessore {
         }
         return false;
     }
+
+    public Professor getProfByNum(String numMec){
+        for(Professor prof:lista){
+            if( numMec.equals(prof.getNumMec()) ){
+                return prof;
+            }
+        }
+        return null;
+    }
+
     public boolean isRegente(String numMec){
         for(Professor prof:lista){
-            if(numMec.equals(prof.getNumMec()) && prof instanceof Regente){
-                return false;
+            if( numMec.equals(prof.getNumMec()) && prof.getCargoString().equals("Regente") ){
+                return true;
             }
         }
         return true;

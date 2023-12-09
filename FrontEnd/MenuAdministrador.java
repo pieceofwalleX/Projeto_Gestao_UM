@@ -48,7 +48,7 @@ public class MenuAdministrador {
                     break;
                 case 2:
                     //Verificar se o usuario quer modificar uma UC ou um Curso
-                    MenuGestaoUC.gestaoUC(listaUC);
+                    MenuGestaoUC.gestaoUC(listaUC,listaProf);
                     //Menu Gestao de Curso/UC
                     break;
                 case 3:
