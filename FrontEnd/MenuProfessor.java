@@ -36,8 +36,7 @@ public class MenuProfessor {
 
         Sumario s = new Sumario();
         int idUC;
-        String idProf;
-        boolean inUCList, inProfList;
+        boolean inUCList;
 
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -71,7 +70,6 @@ public class MenuProfessor {
 
     public static void printSumarios(HashSumario listaSumarios, String id) {
         int idUC;
-        String idProf;
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.println("#.....Universidade.do.Minho.....#");

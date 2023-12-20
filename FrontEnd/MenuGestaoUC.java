@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import BackEnd.UC;
 import BackEnd.Listas.*;
-import BackEnd.Professor.Professor;
 
 public class MenuGestaoUC {
     static final Scanner in = new Scanner(System.in);
@@ -12,7 +11,6 @@ public class MenuGestaoUC {
             in.nextLine();
             String profNum;
             UC uc = new UC(); 
-            Professor professor = new Professor();
             System.out.println("#-----Universidade-do-Minho-----#");
             System.out.println("#-----------Gestao-UC-----------#");
             System.out.println("# Descricao da UC: ");
@@ -47,7 +45,8 @@ public class MenuGestaoUC {
             System.out.println("#                               #");
             System.out.println("#1. Resgistrar UC               #");
             System.out.println("#2. Editar Informaceos UC       #");
-            System.out.println("#3. Listar UCs                  #");
+            System.out.println("#3. Equipa docente              #");
+            System.out.println("#4. Listar UCs                  #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
             System.out.println("#-------------------------------#");
@@ -60,7 +59,7 @@ public class MenuGestaoUC {
                     //Registro de novas UCs;
                     addUC(listaUC,listaProf);
                     break;
-                case 3:
+                case 4:
                     System.out.println("#-----Universidade-do-Minho-----#");
                     System.out.println("#-----------Gestao-UC-----------#");
                     listaUC.listarUC(true); // O boolean server para listar caso seja true, e apenas contar caso seja false

@@ -13,7 +13,6 @@ public class HashSumario {
      * O uso desta KEY e explicado em baixo (linha 25)
      */
     Map<Sumario,String> sumarios = new HashMap<>();
-
     public void add(Sumario s,String descricao){
         sumarios.put(s,descricao);
     }
