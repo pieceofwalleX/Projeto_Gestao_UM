@@ -53,7 +53,6 @@ public class MenuProfessor {
             System.out.println("# Descricao: ");
             s.setDescricao(in.nextLine());
             listaSumarios.add(s, s.getDescricao());
-            
 
             System.out.println("#...............................#");
             System.out.println("# Resgistrado Sumario           #");
