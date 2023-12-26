@@ -16,6 +16,9 @@ public class MenuGestaoProfessores {
             System.out.println("#......Gestao..Professores.....#");
             System.out.println("# Numero do Professor: ");
             u.setNumMec(in.nextLine());
+            if(listaProfessore.checkNumMec(u.getNumMec())){
+                return;
+            }
             System.out.println("# Nome do Professor: ");
             u.setNome(in.nextLine());
             System.out.println("# Digite a data de Inicio(ddmmyyyy)");

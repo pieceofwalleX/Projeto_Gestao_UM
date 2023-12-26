@@ -19,7 +19,7 @@ public class MenuGestaoUC {
             profNum = in.nextLine();
             /*
              * Nos proximos 2 if`s sera verificado se existe um professor pelo num mecanografico,
-             * Caso esse num esteja associdado a um professor verificamos se o mesmo ja e Regente;
+             * Caso esse 'Num' esteja associdado a um professor verificamos se o mesmo ja e Regente;
              */
             if(!listaProf.checkNumMec(profNum)){
                 return;
@@ -47,6 +47,7 @@ public class MenuGestaoUC {
             System.out.println("#2. Editar Informaceos UC       #");
             System.out.println("#3. Equipa docente              #");
             System.out.println("#4. Listar UCs                  #");
+            System.out.println("#5. Remover UC                  #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
             System.out.println("#-------------------------------#");
@@ -66,6 +67,14 @@ public class MenuGestaoUC {
                     System.out.println("Pressione ENTER para continuar ...");
                     in.nextLine();
                     in.nextLine();
+                    break;
+                case 5:
+                    System.out.println("#-----Universidade-do-Minho-----#");
+                    System.out.println("#-----------Gestao-UC-----------#");
+                    System.out.println("#----------Eliminar-UC----------#");
+                    System.out.println("# Id: ");
+                    listaUC.removeUC(in.nextInt());
+                    Thread.sleep(800);
                     break;
                 default:
                     System.err.println("ERROR Opcao Invalida #");

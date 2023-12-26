@@ -51,4 +51,15 @@ public class ListProfessore {
         }
         return true;
     }
+
+    public void removePorf(String numMec){
+        int i = 0;
+        for(Professor p: lista){
+            if(p.getNumMec() == numMec){
+                lista.remove(i);
+                return;
+            }
+            i++;
+        }
+    }
 }

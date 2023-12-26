@@ -34,6 +34,10 @@ public class ListUC {
         return false;
     }
     public void removeUC(int id){
+        if(!checkID(id)){
+            System.err.println("#Error ID UC nao existe ");
+            return;
+        }
         lista.remove(id-1); //id - 1 , porque os ids das UCs comecam no 1 e nao no 0 ao contrario dos index
         for(UC uc:lista.subList(id - 1, lista.size())){
             uc.setId(id+1);
