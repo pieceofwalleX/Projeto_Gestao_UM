@@ -11,8 +11,8 @@ public class MenuGestaoUC {
             in.nextLine();
             String profNum;
             UC uc = new UC(); 
-            System.out.println("#-----Universidade-do-Minho-----#");
-            System.out.println("#-----------Gestao-UC-----------#");
+            System.out.println("#.....Universidade.do.Minho.....#");
+            System.out.println("#...........Gestao.UC...........#");
             System.out.println("# Descricao da UC: ");
             uc.setDesignacao(in.nextLine());
             System.out.println("# Num do Regente da UC: ");
@@ -29,7 +29,7 @@ public class MenuGestaoUC {
             }
             uc.setRegente(listaProf.getProfByNum(profNum));
             System.out.format("# Registada UC: %d , %s , %s\t#\n",uc.getId(),profNum,uc.getDesignacao());
-            System.out.println("#-------------------------------#");
+            System.out.println("#...............................#");
             Thread.sleep(800);
             listaUC.adicionar(uc);
     }

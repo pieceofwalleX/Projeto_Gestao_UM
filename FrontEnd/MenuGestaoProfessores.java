@@ -2,6 +2,7 @@ package FrontEnd;
 
 import java.util.Scanner;
 
+import BackEnd.UC;
 import BackEnd.Listas.ListProfessore;
 import BackEnd.Listas.ListUC;
 import BackEnd.Professor.Professor;
@@ -39,9 +40,10 @@ public class MenuGestaoProfessores {
         listaProfessore.adicionar(u);
     }
 
-    public static void removeProf(ListProfessore listaProf) throws InterruptedException {
+    public static void removeProf(ListProfessore listaProf,ListUC listaUC) throws InterruptedException {
         String id;
         StringBuilder animation = new StringBuilder("Removendo");
+        UC uc = new UC();
         int maxDots = 3;
         int currentDot = 0; 
 
@@ -52,6 +54,8 @@ public class MenuGestaoProfessores {
         System.out.println("# Id: ");
         id = in.nextLine();
         if (listaProf.checkNumMec(id)) {
+            uc = listaUC.getUCByRegente(id);
+            uc.setRegente(null);
             listaProf.removePorf(id);
         }
         for (int r = 0; r < 4; r++) {
@@ -70,7 +74,7 @@ public class MenuGestaoProfessores {
 
     }
 
-    public static void menu(ListProfessore listaProf) throws InterruptedException {
+    public static void menu(ListProfessore listaProf,ListUC listaUC) throws InterruptedException {
 
         int opcao = 0;
         do {
@@ -105,7 +109,7 @@ public class MenuGestaoProfessores {
                     in.nextLine();
                     break;
                 case 4:
-                    removeProf(listaProf);
+                    removeProf(listaProf,listaUC);
                     break;
                 default:
                     System.err.println("ERROR Opcao Invalida #");

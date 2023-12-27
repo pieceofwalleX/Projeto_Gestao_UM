@@ -21,7 +21,7 @@ public class ListUC {
             regente = uc.getRegente();
             if(print == true) {
                 System.out.format("# ID: %d Designacao: %s Regente: %s\t#\n", uc.getId(), uc.getDesignacao(), regente.getNome() == null ? "Sem Regente" : regente.getNome());
-                System.out.println("#...............................#");
+                System.out.println("#..............................................................#");
             }else{                     
                 elementos++;
             }
@@ -35,6 +35,16 @@ public class ListUC {
             }
         }
         return false;
+    }
+    public UC getUCByRegente(String id){
+        Professor regente;
+        for(UC u:lista){
+            regente = u.getRegente();
+            if(regente.getNumMec().equals(id)){
+                return u;
+            }
+        }
+        return null;
     }
     public void removeUC(int id){
         if(!checkID(id)){

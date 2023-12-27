@@ -44,7 +44,7 @@ public class MenuAdministrador {
                     break;
                 case 1:
                     //Menu Gestao de Professores;
-                    MenuGestaoProfessores.menu(listaProf);
+                    MenuGestaoProfessores.menu(listaProf,listaUC);
                     break;
                 case 2:
                     //Verificar se o usuario quer modificar uma UC ou um Curso
