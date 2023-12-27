@@ -55,7 +55,7 @@ public class ListProfessore {
     public void removePorf(String numMec){
         int i = 0;
         for(Professor p: lista){
-            if(p.getNumMec() == numMec){
+            if(p.getNumMec().equals(numMec)){
                 lista.remove(i);
                 return;
             }
