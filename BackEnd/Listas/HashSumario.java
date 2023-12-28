@@ -20,6 +20,7 @@ public class HashSumario {
         sumarios.get(s);
         System.out.println("\nId Disciplina: "+ s.getIdDisciplina()+
                 "\nId Professor: "+ s.getIdProfessor() +
+                "\nTipo Aula: "+ s.getTipoAula() +
                 "\nDescricao: " + s.getDescricao());
     }
     /*

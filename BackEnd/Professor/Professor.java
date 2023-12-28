@@ -5,10 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Professor {
-    public enum tipoProfessor{
-    Normal,
-    Regente,
-    Diretor
+    private enum tipoProfessor {
+        Normal,
+        Regente,
+        Diretor
     }
 
     private String numMec;
@@ -16,54 +16,65 @@ public class Professor {
     private String data_inicio;
     private tipoProfessor cargo;
 
-    public Professor(){
+    public Professor() {
         numMec = "";
         nome = "";
         data_inicio = "";
         cargo = tipoProfessor.Normal;
     }
-    public Professor(String numMec,String nome, String data_inicio,tipoProfessor cargo){
+
+    public Professor(String numMec, String nome, String data_inicio, tipoProfessor cargo) {
         this.numMec = numMec;
         this.nome = nome;
         this.data_inicio = data_inicio;
         this.cargo = cargo;
     }
-    public void setNumMec(String numMec){
+
+    public void setNumMec(String numMec) {
         this.numMec = numMec;
     }
-    public void setNome(String nome){
+
+    public void setNome(String nome) {
         this.nome = nome;
     }
-    public void setCargo(tipoProfessor cargo){
+
+    public void setCargo(tipoProfessor cargo) {
         this.cargo = cargo;
     }
-    public void setDataInicio(String data_inicio){
+
+    public void setDataInicio(String data_inicio) {
         this.data_inicio = data_inicio;
     }
-    public String getNumMec(){
+
+    public String getNumMec() {
         return numMec;
     }
-    public String getNome(){
+
+    public String getNome() {
         return nome;
     }
-    public String getCargoString(){
-        if(cargo == tipoProfessor.Normal){
+
+    public String getCargoString() {
+        if (cargo == tipoProfessor.Normal) {
             return "Normal";
-        }else if(cargo == tipoProfessor.Regente){
+        } else if (cargo == tipoProfessor.Regente) {
             return "Regente";
-        }else if(cargo == tipoProfessor.Diretor){
+        } else if (cargo == tipoProfessor.Diretor) {
             return "Diretor";
-        }else{
+        } else {
             return "NULL";
         }
     }
-    public tipoProfessor getCargo(){
+
+    public tipoProfessor getCargo() {
         return cargo;
     }
-    public String getDataInicio(){
+
+    public String getDataInicio() {
         return data_inicio;
     }
-    public String transformData(){
+
+    public String transformData() {
         try {
             SimpleDateFormat original = new SimpleDateFormat("ddMMyyyy");
             Date data = original.parse(data_inicio);

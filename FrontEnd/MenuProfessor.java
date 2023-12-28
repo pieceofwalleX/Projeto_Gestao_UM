@@ -35,7 +35,7 @@ public class MenuProfessor {
             throws InterruptedException {
 
         Sumario s = new Sumario();
-        int idUC;
+        int idUC,tipoAula;
         boolean inUCList;
 
         System.out.print("\033[H\033[2J");
@@ -50,6 +50,14 @@ public class MenuProfessor {
         if (inUCList) {
             s.setIdDisciplina(idUC);
             s.setIdProfessor(id);
+            System.out.println("#..............Tipo..Aula..............");
+            System.out.println("# 1.Teorica 2.Teorico-Pratica 3.Pratica");
+            tipoAula = in.nextInt();
+            if(!s.verifyTipoAula(tipoAula)){
+                System.err.println("#ERROR Tipo de aula Invalido");
+                return;
+            }
+            s.setTipoAula(tipoAula);
             System.out.println("# Descricao: ");
             s.setDescricao(in.nextLine());
             listaSumarios.add(s, s.getDescricao());
@@ -68,7 +76,7 @@ public class MenuProfessor {
     }
 
     public static void printSumarios(HashSumario listaSumarios, String id) {
-        int idUC;
+        int idUC, tipoAula;
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.println("#.....Universidade.do.Minho.....#");
@@ -76,7 +84,10 @@ public class MenuProfessor {
         System.out.println("#                               #");
         System.out.println("#UC: ");
         idUC = in.nextInt();
-        Sumario s = new Sumario(idUC, id);
+        System.out.println("#..............Tipo..Aula..............");
+        System.out.println("# 1.Teorica 2.Teorico-Pratica 3.Pratica");
+        tipoAula = in.nextInt();
+        Sumario s = new Sumario(idUC, id, tipoAula);
         listaSumarios.listarSumarios(s, true);
         System.out.println("#...............................#");
         System.out.println("Pressione ENTER para continuar ...");

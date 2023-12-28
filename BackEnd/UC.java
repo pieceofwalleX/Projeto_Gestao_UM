@@ -7,20 +7,21 @@ public class UC {
     private static int nextId = 1;
     private int id;
     private String designacao;
-    private ListProfessore listaProfessores = new ListProfessore();
+    private ListProfessore listaDocente = new ListProfessore();
     private Professor regente;
 
     public UC() {
         designacao = "";
         id = nextId;
         regente = null;
-        listaProfessores = null;
+        listaDocente = null;
         nextId++;
     }
 
-    public UC(String designacao, Professor regente) {
+    public UC(String designacao, Professor regente, ListProfessore listaDocente) {
         this.designacao = designacao;
         this.regente = regente;
+        this.listaDocente = listaDocente;
         id = nextId;
         nextId++;
     }
@@ -55,10 +56,10 @@ public class UC {
 
     public void adicionarProf(Professor p) {
         
-        listaProfessores.adicionar(p);
+        listaDocente.adicionar(p);
     }
 
     public void listarEquipaDocente() {
-        listaProfessores.listarProf(true);
+        listaDocente.listarProf(true);
     }
 }

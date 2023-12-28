@@ -32,8 +32,9 @@ public class MenuAdministrador {
             System.out.println("#---------Administracao---------#");
             System.out.println("#                               #");
             System.out.println("#1. Gerir Professor             #");
-            System.out.println("#2. Gerir Curso\\UCs             #");
-            System.out.println("#3. Listar Informacao           #");
+            System.out.println("#2. Gerir Curso                 #");
+            System.out.println("#3. Gerir UCs                   #");
+            System.out.println("#4. Listar Informacao           #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
             System.out.println("#-------------------------------#");
@@ -46,12 +47,11 @@ public class MenuAdministrador {
                     //Menu Gestao de Professores;
                     MenuGestaoProfessores.menu(listaProf,listaUC);
                     break;
-                case 2:
-                    //Verificar se o usuario quer modificar uma UC ou um Curso
+                case 3:
                     MenuGestaoUC.gestaoUC(listaUC,listaProf);
                     //Menu Gestao de Curso/UC
                     break;
-                case 3:
+                case 4:
                     //Verificar que informacao o usuario quer listar
                     //Menu Listagem
                     break;

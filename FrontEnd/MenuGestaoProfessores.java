@@ -102,8 +102,7 @@ public class MenuGestaoProfessores {
                 case 3:
                     System.out.println("#.....Universidade.do.Minho.....#");
                     System.out.println("#......Gestao..Professores......#");
-                    listaProf.listarProf(true); // O boolean server para listar caso seja true, e apenas contar caso
-                                                // seja false
+                    listaProf.listarProf(true); // O boolean server para listar caso seja true, e apenas contar caso seja false
                     System.out.println("Pressione ENTER para continuar ...");
                     in.nextLine();
                     in.nextLine();
