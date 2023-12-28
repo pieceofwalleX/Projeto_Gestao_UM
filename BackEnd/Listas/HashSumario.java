@@ -32,7 +32,7 @@ public class HashSumario {
     public int listarSumarios(Sumario s,int tipoAula,String profNome,boolean print){
         int elementos = 0;
         for(Map.Entry<Sumario,Content> entry: sumarios.entrySet()){
-            if(print){
+            if(print && tipoAula == Integer.parseInt(entry.getKey().getTipoAula())){
                 System.out.println("#...............................#");
                 System.out.println("# Id Disciplina: "+ entry.getKey().getIdDisciplina()+
                 "\n# ID-Nome Professor: "+ entry.getKey().getIdProfessor() + "\t" + profNome +

@@ -128,15 +128,15 @@ public class MenuProfessor {
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("#.....Universidade.do.Minho.....#");
-            System.out.format("#......Professor.%s..%s.#\n",p.getNome(),p.getCargoString());
-            System.out.println("#                               #");
-            System.out.println("#1. Criar Sumario               #");
-            System.out.println("#2. Lista de Sumarios           #");
+            System.out.println("#..........Universidade.do.Minho..........#");
+            System.out.format("#......Professor.%s..[%s]......#\n",p.getNome(),p.getCargoString());
+            System.out.println("#                                         #");
+            System.out.println("#1. Criar Sumario                         #");
+            System.out.println("#2. Lista de Sumarios                     #");
             if(p.getCargoString() == "Regente"){
-                System.out.println("#3. Editar UC                     #");
+                System.out.println("#3. Editar UC                             #");
             }else if(p.getCargoString() == "Diretor"){
-                System.out.println("#3. Editar Curso                  #");
+                System.out.println("#3. Editar Curso                          #");
             }
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");

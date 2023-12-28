@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import BackEnd.UC;
 import BackEnd.Listas.*;
+import BackEnd.Professor.Professor;
 
 public class MenuAdminUC {
     static final Scanner in = new Scanner(System.in);
@@ -11,6 +12,7 @@ public class MenuAdminUC {
             in.nextLine();
             String profNum;
             UC uc = new UC(); 
+            Professor prof = new Professor();
             System.out.println("#.....Universidade.do.Minho.....#");
             System.out.println("#...........Gestao.UC...........#");
             System.out.println("# Descricao da UC: ");
@@ -27,6 +29,8 @@ public class MenuAdminUC {
             if(!listaProf.isRegente(profNum)){
                 return;
             }
+            prof = listaProf.getProfByNum(profNum);
+            prof.setCargo("Regente");
             uc.setRegente(listaProf.getProfByNum(profNum));
             System.out.format("# Registada UC: %d , %s , %s\t#\n",uc.getId(),profNum,uc.getDesignacao());
             System.out.println("#...............................#");
@@ -40,8 +44,8 @@ public class MenuAdminUC {
         do{
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("#-----Universidade-do-Minho-----#");
-            System.out.println("#-----------Gestao-UC-----------#");
+            System.out.println("#.....Universidade.do.Minho.....#");
+            System.out.println("#...........Gestao.UC...........#");
             System.out.println("#                               #");
             System.out.println("#1. Resgistrar UC               #");
             System.out.println("#2. Editar Informaceos UC       #");
@@ -50,7 +54,7 @@ public class MenuAdminUC {
             System.out.println("#5. Remover UC                  #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
-            System.out.println("#-------------------------------#");
+            System.out.println("#...............................#");
             opcao = in.nextInt();
 
             switch (opcao){
@@ -61,17 +65,17 @@ public class MenuAdminUC {
                     addUC(listaUC,listaProf);
                     break;
                 case 4:
-                    System.out.println("#-----Universidade-do-Minho-----#");
-                    System.out.println("#-----------Gestao-UC-----------#");
+                    System.out.println("#..........Universidade.do.Minho..........#");
+                    System.out.println("#................Gestao.UC................#");
                     listaUC.listarUC(true); // O boolean server para listar caso seja true, e apenas contar caso seja false
                     System.out.println("Pressione ENTER para continuar ...");
                     in.nextLine();
                     in.nextLine();
                     break;
                 case 5:
-                    System.out.println("#-----Universidade-do-Minho-----#");
-                    System.out.println("#-----------Gestao-UC-----------#");
-                    System.out.println("#----------Eliminar-UC----------#");
+                    System.out.println("#.....Universidade.do.Minho.....#");
+                    System.out.println("#...........Gestao.UC...........#");
+                    System.out.println("#..........Eliminar.UC..........#");
                     System.out.println("# Id: ");
                     listaUC.removeUC(in.nextInt());
                     Thread.sleep(800);

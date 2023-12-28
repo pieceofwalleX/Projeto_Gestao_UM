@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class Professor {
     private enum tipoProfessor {
         Normal,
@@ -38,8 +39,20 @@ public class Professor {
         this.nome = nome;
     }
 
-    public void setCargo(tipoProfessor cargo) {
-        this.cargo = cargo;
+    public void setCargo(String cargo) {
+        switch (cargo) {
+            case "Normal":
+                this.cargo = tipoProfessor.Normal;
+                break;
+            case "Regente":
+                this.cargo = tipoProfessor.Regente;
+                break;
+            case "Diretor":
+                this.cargo = tipoProfessor.Diretor;
+            default:
+                System.err.println("\n#ERROR Erro ao mudar o Cargo do professor " + nome);
+                break;
+        }
     }
 
     public void setDataInicio(String data_inicio) {
