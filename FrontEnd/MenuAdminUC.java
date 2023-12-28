@@ -24,9 +24,13 @@ public class MenuAdminUC {
              * Caso esse 'Num' esteja associdado a um professor verificamos se o mesmo ja e Regente;
              */
             if(!listaProf.checkNumMec(profNum)){
+                System.err.println("ERROR Falha ao encontrar professor");
+                Thread.sleep(400);
                 return;
             }
             if(!listaProf.isRegente(profNum)){
+                System.err.println("ERROR Professor ja e Regente");
+                Thread.sleep(400);
                 return;
             }
             prof = listaProf.getProfByNum(profNum);

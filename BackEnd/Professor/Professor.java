@@ -79,10 +79,6 @@ public class Professor {
         }
     }
 
-    public tipoProfessor getCargo() {
-        return cargo;
-    }
-
     public String getDataInicio() {
         return data_inicio;
     }
