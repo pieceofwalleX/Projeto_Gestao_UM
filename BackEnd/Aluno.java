@@ -30,5 +30,17 @@ public class Aluno {
     public void addFalta(){
         falta++;
     }
+    public String getNome(){
+        return nome;
+    }
+    public String getNum(){
+        return numMec;
+    }
+    public int getFaltas(){
+        return falta;
+    }
+    public Curso getCurso(){
+        return curso;
+    }
 
 }
