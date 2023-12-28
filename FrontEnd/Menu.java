@@ -21,9 +21,7 @@ public class Menu {
             System.out.println("#.....Universidade-do-Minho.....#");
             System.out.println("#                               #");
             System.out.println("#1. Administracao               #");
-            System.out.println("#2. Gestao das UCs              #");
-            System.out.println("#3. Gestao do Curso             #");
-            System.out.println("#4. Menu Professor              #");
+            System.out.println("#2. Menu Professor              #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
             System.out.println("#...............................#");
@@ -39,7 +37,7 @@ public class Menu {
                         */
                         MenuAdministrador.Auth(listaUC,listaProf);
                         break;
-                    case 4:
+                    case 2:
                         /*
                             Muda para o Menu dos Professores
                         */
@@ -47,6 +45,8 @@ public class Menu {
                         break;
                     default:
                         System.err.println("#ERROR Opcao Invalida #");
+                        Thread.sleep(400);
+                        main(args);
                 }
         }while(opcao != 0);
     }catch(Exception e){
