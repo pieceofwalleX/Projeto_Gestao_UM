@@ -5,7 +5,7 @@ import java.util.Scanner;
 import BackEnd.UC;
 import BackEnd.Listas.*;
 
-public class MenuGestaoUC {
+public class MenuAdminUC {
     static final Scanner in = new Scanner(System.in);
         public static void addUC(ListUC listaUC,ListProfessore listaProf) throws InterruptedException{
             in.nextLine();

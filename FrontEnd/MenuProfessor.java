@@ -113,20 +113,31 @@ public class MenuProfessor {
         in.nextLine();
     }
 
+
+
     public static void menu(HashSumario listaSumarios, ListUC listaUC, ListProfessore listaProf, String id)
             throws InterruptedException {
 
         int opcao = 0;
-
+        Professor p = new Professor();
+        try{
+            p = listaProf.getProfByNum(id);
+        }catch(Exception e){
+            System.err.println("#ERROR Falha ao obter informacao do professor");
+        }
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
             System.out.println("#.....Universidade.do.Minho.....#");
-            System.out.format("#...........Professor.%s.........#\n", id);
+            System.out.format("#......Professor.%s..%s.#\n",p.getNome(),p.getCargoString());
             System.out.println("#                               #");
             System.out.println("#1. Criar Sumario               #");
             System.out.println("#2. Lista de Sumarios           #");
-            System.out.println("#3. Unidades Curriculares\\UCs   #");
+            if(p.getCargoString() == "Regente"){
+                System.out.println("#3. Editar UC                     #");
+            }else if(p.getCargoString() == "Diretor"){
+                System.out.println("#3. Editar Curso                  #");
+            }
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
             System.out.println("#...............................#");
@@ -145,8 +156,11 @@ public class MenuProfessor {
                     printSumarios(listaSumarios,listaUC,listaProf,id);
                     break;
                 case 3:
-                    // Verificar que informacao o usuario quer listar
-                    // Menu Listagem
+                    if(p.getCargoString() == "Regente"){
+                        //Menu Regente
+                    }else if(p.getCargoString() == "Diretor"){
+                        //Menu Diretor
+                    }
                     break;
                 default:
                     System.err.println("ERROR Opcao Invalida #");

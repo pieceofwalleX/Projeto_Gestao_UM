@@ -7,7 +7,7 @@ import BackEnd.Listas.ListProfessore;
 import BackEnd.Listas.ListUC;
 import BackEnd.Professor.Professor;
 
-public class MenuGestaoProfessores {
+public class MenuAdminProfessores {
     static final Scanner in = new Scanner(System.in);
 
     public static void addProf(ListProfessore listaProfessore) throws InterruptedException {

@@ -5,6 +5,7 @@ public class Aluno {
     private String nome;
     private String numMec; //Sera usado o sistema de IDs ou seja os alunos comecao no 1 e sempre que se registra um aluno sera aumentado +1 ao numMec;
     private Curso curso;
+    private int falta = 0;
 
     public Aluno(){
         nome = "";
@@ -25,6 +26,9 @@ public class Aluno {
     }
     public void setCurso(Curso curso){
         this.curso = curso;
+    }
+    public void addFalta(){
+        falta++;
     }
 
 }

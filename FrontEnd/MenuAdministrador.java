@@ -45,10 +45,10 @@ public class MenuAdministrador {
                     break;
                 case 1:
                     //Menu Gestao de Professores;
-                    MenuGestaoProfessores.menu(listaProf,listaUC);
+                    MenuAdminProfessores.menu(listaProf,listaUC);
                     break;
                 case 3:
-                    MenuGestaoUC.gestaoUC(listaUC,listaProf);
+                    MenuAdminUC.gestaoUC(listaUC,listaProf);
                     //Menu Gestao de Curso/UC
                     break;
                 case 4:
