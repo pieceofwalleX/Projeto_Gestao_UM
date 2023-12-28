@@ -2,6 +2,7 @@ package FrontEnd;
 
 import java.util.Scanner;
 import BackEnd.Listas.*;
+import BackEnd.Professor.Professor;
 import BackEnd.*;
 
 public class MenuProfessor {
@@ -35,9 +36,9 @@ public class MenuProfessor {
             throws InterruptedException {
 
         Sumario s = new Sumario();
+        Content content = new Content(); // Por Fazer
         int idUC, tipoAula;
         boolean inUCList;
-
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.println("#.....Universidade.do.Minho.....#");
@@ -59,9 +60,16 @@ public class MenuProfessor {
             }
             s.setTipoAula(tipoAula);
             in.nextLine(); //Limpar o buffer
+            /*
+             * Adicionar Conteudo
+             * Aqui sera adicionado uma Lista de Alunos, sera usada a lista de Cursos
+             * Ao selecionar o Curso a lista de alunos desse curso sera usada.
+             * Verificacao:
+             *  Ver se o Curso contem a UC e Se o Professor pertence a equipa Docente
+             */
             System.out.println("# Descricao: ");
             s.setDescricao(in.nextLine());
-            listaSumarios.add(s, s.getDescricao());
+            listaSumarios.add(s, content);
             System.out.println("#...............................#");
             System.out.println("# Resgistrado Sumario           #");
             listaSumarios.get(s);
@@ -75,9 +83,11 @@ public class MenuProfessor {
         }
     }
 
-    public static void printSumarios(HashSumario listaSumarios,ListUC listaUC,String id) {
+    public static void printSumarios(HashSumario listaSumarios,ListUC listaUC,ListProfessore listaProf,String id) {
         int idUC, tipoAula;
         Sumario s = new Sumario();
+        Professor p = new Professor();
+        p = listaProf.getProfByNum(id);
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.println("#.....Universidade.do.Minho.....#");
@@ -96,7 +106,7 @@ public class MenuProfessor {
             System.err.println("#ERROR Tipo de aula Invalido");
             return;
         }
-        listaSumarios.listarSumarios(s, tipoAula, true);
+        listaSumarios.listarSumarios(s, tipoAula,p.getNome(),true);
         System.out.println("#...............................#");
         System.out.println("Pressione ENTER para continuar ...");
         in.nextLine();
@@ -132,7 +142,7 @@ public class MenuProfessor {
                 case 2:
                     // Verificar se o usuario quer modificar uma UC ou um Curso
                     // Menu Gestao de Curso/UC
-                    printSumarios(listaSumarios,listaUC,id);
+                    printSumarios(listaSumarios,listaUC,listaProf,id);
                     break;
                 case 3:
                     // Verificar que informacao o usuario quer listar

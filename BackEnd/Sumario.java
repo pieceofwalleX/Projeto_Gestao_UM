@@ -1,5 +1,7 @@
 package BackEnd;
 
+import BackEnd.Listas.ListAluno;
+
 public class Sumario {
     private String[] tipoAula = {"T","TP","PL"};
 
@@ -7,17 +9,20 @@ public class Sumario {
     private String idProfessor;
     private String descricao;
     private String aula;
+    private ListAluno listaAlunos;
 
     public Sumario() {
         idDisciplina = 0;
         idProfessor = "";
         aula= tipoAula[0];
+        listaAlunos = null;
     }
 
-    public Sumario(int idDisciplina, String idProfessor,int tipo) {
+    public Sumario(int idDisciplina, String idProfessor,int tipo,ListAluno listaAlunos) {
         this.idDisciplina = idDisciplina;
         this.idProfessor = idProfessor;
         this.aula = tipoAula[tipo];
+        this.listaAlunos = listaAlunos;
     }
 
     public int getIdDisciplina() {
