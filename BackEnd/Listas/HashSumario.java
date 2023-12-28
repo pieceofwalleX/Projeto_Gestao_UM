@@ -28,7 +28,7 @@ public class HashSumario {
      * Ao usar esta Key e possivel ir diretamente para os sumarios de uma UC de um Certo Professor,
      * Em vez de porcurar em uma lista gigante varios sumarios;
      */
-    public int listarSumarios(Sumario s,boolean print){
+    public int listarSumarios(Sumario s,int tipoAula,boolean print){
         int elementos = 0;
         for(Map.Entry<Sumario,String> entry: sumarios.entrySet()){
             if(print){
