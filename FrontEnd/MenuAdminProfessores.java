@@ -40,24 +40,46 @@ public class MenuAdminProfessores {
         listaProfessore.adicionar(u);
     }
 
-    public static void removeProf(ListProfessore listaProf,ListUC listaUC) throws InterruptedException {
+    public static void removeProf(ListProfessore listaProf, ListUC listaUC) throws InterruptedException {
         String id;
-        StringBuilder animation = new StringBuilder("Removendo");
+        StringBuilder animationRegente = new StringBuilder("Removendo regencia");
+        StringBuilder animationNormal = new StringBuilder("Removendo");
         UC uc = new UC();
         int maxDots = 3;
-        int currentDot = 0; 
+        int currentDot = 0;
 
         System.out.println("#-----Universidade-do-Minho-----#");
         in.nextLine();
         System.out.println("#......Gestao..Professores......#");
         System.out.println("#......Eliminar.Professore......#");
         System.out.println("# Id: ");
-        id = in.nextLine();
-        if (listaProf.checkNumMec(id)) {
+        id = in.next();
+        if (!listaProf.checkNumMec(id)) {
+            System.err.println("#ERROR Nao foi possivel encontrar o professor");
+            Thread.sleep(400);
+            return;
+        }
+        if(listaProf.isRegente(id)) {
             uc = listaUC.getUCByRegente(id);
             uc.setRegente(null);
-            listaProf.removePorf(id);
+            //Animaca
+            for (int r = 0; r < 4; r++) {
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    System.err.println("#ERROR Algo deu errado");
+                }
+
+                currentDot = (currentDot + 1) % (maxDots + 1);
+                for (int i = 0; i < 3; i++) {
+                    animationRegente.append(".");
+                }
+                System.out.print("\r" + animationRegente);
+            }
         }
+
+        listaProf.removePorf(id);
+        //Animacao
         for (int r = 0; r < 4; r++) {
             try {
                 Thread.sleep(300);
@@ -67,14 +89,14 @@ public class MenuAdminProfessores {
 
             currentDot = (currentDot + 1) % (maxDots + 1);
             for (int i = 0; i < 3; i++) {
-                animation.append(".");
+                animationNormal.append(".");
             }
-            System.out.print("\r" + animation);
+            System.out.print("\r" + animationNormal);
         }
 
     }
 
-    public static void menu(ListProfessore listaProf,ListUC listaUC) throws InterruptedException {
+    public static void menu(ListProfessore listaProf, ListUC listaUC) throws InterruptedException {
 
         int opcao = 0;
         do {
@@ -102,13 +124,14 @@ public class MenuAdminProfessores {
                 case 3:
                     System.out.println("#.....Universidade.do.Minho.....#");
                     System.out.println("#......Gestao..Professores......#");
-                    listaProf.listarProf(true); // O boolean server para listar caso seja true, e apenas contar caso seja false
+                    listaProf.listarProf(true); // O boolean server para listar caso seja true, e apenas contar caso
+                                                // seja false
                     System.out.println("Pressione ENTER para continuar ...");
                     in.nextLine();
                     in.nextLine();
                     break;
                 case 4:
-                    removeProf(listaProf,listaUC);
+                    removeProf(listaProf, listaUC);
                     break;
                 default:
                     System.err.println("ERROR Opcao Invalida #");

@@ -49,7 +49,7 @@ public class ListProfessore {
                 return true;
             }
         }
-        return true;
+        return false;
     }
 
     public void removePorf(String numMec){
