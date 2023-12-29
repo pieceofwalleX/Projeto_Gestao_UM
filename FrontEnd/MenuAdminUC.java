@@ -28,7 +28,7 @@ public class MenuAdminUC {
                 Thread.sleep(400);
                 return;
             }
-            if(!listaProf.isRegente(profNum)){
+            if(listaProf.isRegente(profNum)){
                 System.err.println("ERROR Professor ja e Regente");
                 Thread.sleep(400);
                 return;
@@ -69,8 +69,8 @@ public class MenuAdminUC {
                     addUC(listaUC,listaProf);
                     break;
                 case 4:
-                    System.out.println("#..........Universidade.do.Minho..........#");
-                    System.out.println("#................Gestao.UC................#");
+                    System.out.println("#..............Universidade.do.Minho..............#");
+                    System.out.println("#....................Gestao.UC....................#");
                     listaUC.listarUC(true); // O boolean server para listar caso seja true, e apenas contar caso seja false
                     System.out.println("Pressione ENTER para continuar ...");
                     in.nextLine();
