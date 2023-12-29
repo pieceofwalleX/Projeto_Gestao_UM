@@ -57,7 +57,7 @@ public class MenuAdminCurso {
 
     public static void menu(ListCurso listaCurso, ListUC listaUC, ListProfessore listaProf, ListAluno listaAluno)
             throws InterruptedException {
-        int opcao = 0;
+        String opcao;
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -66,21 +66,21 @@ public class MenuAdminCurso {
             System.out.println("#                               #");
             System.out.println("#1. Resgistrar Curso            #");
             System.out.println("#2. Editar Informaceos Curso    #");
-            System.out.println("#4. Listar Cursos               #");
-            System.out.println("#5. Remover Curso               #");
+            System.out.println("#3. Listar Cursos               #");
+            System.out.println("#4. Remover Curso               #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
             System.out.println("#...............................#");
-            opcao = in.nextInt();
+            opcao = in.next();
 
             switch (opcao) {
-                case 0:
+                case "0":
                     break;
-                case 1:
+                case "1":
                     // Registro de novas UCs;
                     addCurso(listaUC, listaProf, listaAluno, listaCurso);
                     break;
-                case 4:
+                case "3":
                     System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#.........Gestao..Curso.........#");
 
@@ -88,7 +88,7 @@ public class MenuAdminCurso {
                     in.nextLine();
                     in.nextLine();
                     break;
-                case 5:
+                case "4":
                     System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#.........Gestao..Curso.........#");
                     System.out.println("#........Eliminar..Curso........#");
@@ -100,7 +100,7 @@ public class MenuAdminCurso {
                     System.err.println("ERROR Opcao Invalida #");
                     break;
             }
-        } while (opcao != 0);
+        } while (!opcao.equals("0"));
     }
 
 }
