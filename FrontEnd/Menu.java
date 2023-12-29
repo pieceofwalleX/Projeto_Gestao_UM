@@ -10,6 +10,8 @@ public class Menu {
         //Inicializar as Listas
         ListUC listaUC = new ListUC();
         ListProfessore listaProf = new ListProfessore();
+        ListAluno listaAluno = new ListAluno();
+        ListCurso listaCurso = new ListCurso();
         HashSumario listaSumarios = new HashSumario();
        
         int opcao = 0;
@@ -35,13 +37,13 @@ public class Menu {
                             Muda para o metodo Auth no Menu Administrador
                             Verifica se o codigo inserido e igual ao codigo de autenticacao;
                         */
-                        MenuAdministrador.Auth(listaUC,listaProf);
+                        MenuAdministrador.Auth(listaUC,listaProf,listaAluno,listaCurso);
                         break;
                     case 2:
                         /*
                             Muda para o Menu dos Professores
                         */
-                        MenuProfessor.authProf(listaSumarios,listaUC,listaProf);
+                        MenuProfessor.authProf(listaSumarios,listaUC,listaProf,listaCurso,listaAluno);
                         break;
                     default:
                         System.err.println("#ERROR Opcao Invalida #");

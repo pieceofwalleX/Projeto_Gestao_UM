@@ -27,6 +27,15 @@ public class Curso {
     public void setDiretor(Professor diretor){
         this.diretor = diretor;
     }
+    public int getId(){
+        return Id;
+    }
+    public String getDesignacao(){
+        return designacao;
+    }
+    public Professor getProf(){
+        return diretor;
+    }
     /*
      * Metodos para as listas
      */

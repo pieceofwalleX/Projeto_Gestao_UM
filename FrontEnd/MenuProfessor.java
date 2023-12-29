@@ -8,7 +8,7 @@ import BackEnd.*;
 public class MenuProfessor {
     static final Scanner in = new Scanner(System.in);
 
-    public static void authProf(HashSumario listaSumarios, ListUC listaUC, ListProfessore listaProf)
+    public static void authProf(HashSumario listaSumarios, ListUC listaUC, ListProfessore listaProf,ListCurso listaCurso,ListAluno listaAluno)
             throws InterruptedException {
 
         String id;
@@ -23,7 +23,7 @@ public class MenuProfessor {
         if (listaProf.checkNumMec(id)) {
             System.err.println("#AVISO Acesso Autorizado #");
             Thread.sleep(500);
-            menu(listaSumarios, listaUC, listaProf, id);
+            menu(listaSumarios, listaUC, listaProf,listaCurso,listaAluno, id);
         } else {
             System.out.println("#Error Codigo Invalido #");
             Thread.sleep(800);
@@ -115,7 +115,7 @@ public class MenuProfessor {
 
 
 
-    public static void menu(HashSumario listaSumarios, ListUC listaUC, ListProfessore listaProf, String id)
+    public static void menu(HashSumario listaSumarios, ListUC listaUC, ListProfessore listaProf,ListCurso listaCurso,ListAluno listaAluno, String id)
             throws InterruptedException {
 
         int opcao = 0;
@@ -129,7 +129,7 @@ public class MenuProfessor {
             System.out.print("\033[H\033[2J");
             System.out.flush();
             System.out.println("#..........Universidade.do.Minho..........#");
-            System.out.format("#......Professor.%s..[%s]......#\n",p.getNome(),p.getCargoString());
+            System.out.format("#......Professor.%s..[%s].......#\n",p.getNome(),p.getCargoString());
             System.out.println("#                                         #");
             System.out.println("#1. Criar Sumario                         #");
             System.out.println("#2. Lista de Sumarios                     #");
@@ -138,9 +138,9 @@ public class MenuProfessor {
             }else if(p.getCargoString() == "Diretor"){
                 System.out.println("#3. Editar Curso                          #");
             }
-            System.out.println("#                               #");
-            System.out.println("#0. Sair                        #");
-            System.out.println("#...............................#");
+            System.out.println("#                                         #");
+            System.out.println("#0. Sair                                  #");
+            System.out.println("#.........................................#");
             opcao = in.nextInt();
 
             switch (opcao) {
@@ -159,7 +159,7 @@ public class MenuProfessor {
                     if(p.getCargoString() == "Regente"){
                         //Menu Regente
                     }else if(p.getCargoString() == "Diretor"){
-                        //Menu Diretor
+                        MenuDiretor.menu(listaCurso,listaUC,listaProf,listaAluno,p);
                     }
                     break;
                 default:

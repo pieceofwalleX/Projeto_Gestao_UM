@@ -51,6 +51,14 @@ public class ListProfessore {
         }
         return false;
     }
+    public boolean isDiretor(String numMec){
+        for(Professor prof:lista){
+            if( numMec.equals(prof.getNumMec()) && prof.getCargoString().equals("Diretor") ){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void removePorf(String numMec){
         int i = 0;

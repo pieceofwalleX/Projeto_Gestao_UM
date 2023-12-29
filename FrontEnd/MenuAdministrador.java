@@ -5,7 +5,7 @@ import BackEnd.Listas.*;
 public class MenuAdministrador {
     private static int authPin = 1234;
     static Scanner in = new Scanner(System.in);
-    public static void Auth(ListUC listaUC,ListProfessore listaProf) throws InterruptedException{
+    public static void Auth(ListUC listaUC,ListProfessore listaProf,ListAluno listAluno,ListCurso listaCurso) throws InterruptedException{
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.println("#-----Universidade-do-Minho-----#");
@@ -17,12 +17,12 @@ public class MenuAdministrador {
         }else{
             System.out.println("#AVISO Acesso Autorizado #");
             Thread.sleep(500);
-            menu(listaUC,listaProf);
+            menu(listaUC,listaProf,listAluno,listaCurso);
         }
         System.out.println("#-------------------------------#");
     }
 
-    public static void menu(ListUC listaUC,ListProfessore listaProf){
+    public static void menu(ListUC listaUC,ListProfessore listaProf,ListAluno listaAluno, ListCurso listaCurso){
         int opcao = 0;
         try{
         do{
@@ -46,6 +46,9 @@ public class MenuAdministrador {
                 case 1:
                     //Menu Gestao de Professores;
                     MenuAdminProfessores.menu(listaProf,listaUC);
+                    break;
+                case 2:
+                    MenuAdminCurso.menu(listaCurso, listaUC, listaProf, listaAluno);
                     break;
                 case 3:
                     MenuAdminUC.gestaoUC(listaUC,listaProf);
