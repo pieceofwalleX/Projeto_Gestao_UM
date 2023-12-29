@@ -12,6 +12,15 @@ public class UC {
 
     public UC() {
         designacao = "";
+        regente = null;
+        listaDocente = null;
+    }
+    /*
+     * Este constructor e uma maneira de resolver o bug em que ao criar uma UC auxiliar
+     * o id aumentar
+     */
+    public UC(boolean nova){
+        designacao = "";
         id = nextId;
         regente = null;
         listaDocente = null;
