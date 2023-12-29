@@ -12,4 +12,13 @@ public class ListAluno {
     public void adicionar(Aluno a){
         lista.add(a);
     }
+    public void remove(String id){
+        int i = 0;
+        for(Aluno a: lista){
+            if(a.getNum().equals(id)){
+                lista.remove(i);
+            }
+            i++;
+        }
+    }
 }

@@ -13,7 +13,7 @@ public class MenuAdminUC {
     public static void addUC(ListUC listaUC, ListProfessore listaProf) throws InterruptedException {
         in.nextLine();
         String profNum;
-        UC uc = new UC();
+        UC uc = new UC(true);
         Professor prof = new Professor();
         System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
         System.out.println("#...........Gestao.UC...........#");

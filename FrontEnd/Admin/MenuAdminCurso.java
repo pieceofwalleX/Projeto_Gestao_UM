@@ -22,7 +22,7 @@ public class MenuAdminCurso {
         in.nextLine();
         String profNum;
         Professor prof = new Professor();
-        Curso curso = new Curso();
+        Curso curso = new Curso(true);
         System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
         System.out.println("#...........Gestao.UC...........#");
         System.out.println("# Descricao do Curso: ");
@@ -91,7 +91,7 @@ public class MenuAdminCurso {
             System.out.println("#1. Editar Nome                 #");
             System.out.println("#2. Adicionar UC                #");
             System.out.println("#3. Remover UC                  #");
-            System.out.println("#4. Remover Curso               #");
+            System.out.println("#4. Listar UCs                  #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
             System.out.println("#...............................#");
@@ -120,13 +120,20 @@ public class MenuAdminCurso {
                     c.addUC(listaUC.getUCById(id));
                     break;
                 case "3":
-
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
+                    System.out.println("#.........Gestao..Curso.........#");
+                    listaUC.listarUCSimples();
+                    System.out.println("# ID: ");
+                    input = in.next();
+                    if(!check.isInteger(input)){
+                        return;
+                    }
+                    c.removeUC(Integer.parseInt(input) - 1);
                     break;
                 case "4":
                     System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#.........Gestao..Curso.........#");
 
-                    Thread.sleep(800);
                     break;
                 default:
                     System.err.println("ERROR Opcao Invalida #");
@@ -138,6 +145,8 @@ public class MenuAdminCurso {
     public static void menu(ListCurso listaCurso, ListUC listaUC, ListProfessore listaProf, ListAluno listaAluno)
             throws InterruptedException {
         String opcao,id = "";
+        Curso c = new Curso();
+        Professor p = new Professor();
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -185,7 +194,25 @@ public class MenuAdminCurso {
                     System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#.........Gestao..Curso.........#");
                     System.out.println("#........Eliminar..Curso........#");
-                    System.out.println("# Id: ");
+                    System.out.println("# ID:");
+                    id = in.next();
+                    /*
+                     * Verificar se o input e valido
+                     */
+                    if(!check.isInteger(id)){
+                        return;
+                    }
+                    /*
+                     * Remover o cargo de Diretor
+                     */
+                    c = listaCurso.getCursoById(Integer.parseInt(id));
+                    p = c.getDiretor();
+                    p.setCargo("Normal");
+                    /*
+                     * Remover o Curso da lista
+                     */
+                    listaCurso.remove(Integer.parseInt(id));
+                    
 
                     Thread.sleep(800);
                     break;

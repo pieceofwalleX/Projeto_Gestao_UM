@@ -30,6 +30,7 @@ public class ListCurso {
         }
         return null;
     }
+
     public Curso getCursoById(int id){
         for(Curso c:lista){
             if(c.getId() == id){
@@ -51,5 +52,8 @@ public class ListCurso {
             }
         }
         return elementos;
+    }
+    public void remove(int id){
+        lista.remove(id - 1);
     }
 }

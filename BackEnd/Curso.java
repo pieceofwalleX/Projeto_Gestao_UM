@@ -5,7 +5,7 @@ import BackEnd.Listas.ListUC;
 import BackEnd.Professor.Professor;
 
 public class Curso {
-    private static int nextId = 1;
+    private static int nextId = 0;
     private int Id;
     private String designacao;
     private ListUC listaUC;
@@ -13,6 +13,16 @@ public class Curso {
     private Professor diretor;
 
     public Curso(){
+        designacao = "";
+        listaUC = new ListUC();
+        listaAluno = new ListAluno();
+        diretor = new Professor();
+    }
+        /*
+     * Este constructor e uma maneira de resolver o bug em que ao criar um Curso auxiliar
+     * o id aumentar
+     */
+    public Curso(boolean novo){
         Id = nextId;
         designacao = "";
         listaUC = new ListUC();
@@ -45,4 +55,14 @@ public class Curso {
     public void addAluno(Aluno a){
         listaAluno.adicionar(a);
     }
+    public void removeUC(int id){
+        listaUC.removeUC(id);;
+    }
+    public void removeAluno(String id){
+        listaAluno.remove(id);
+    }
+    public void listarUC(){
+        listaUC.listarUC(true);
+    }
+
 }
