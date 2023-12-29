@@ -49,6 +49,7 @@ public class Professor {
                 break;
             case "Diretor":
                 this.cargo = tipoProfessor.Diretor;
+                break;
             default:
                 System.err.println("\n#ERROR Erro ao mudar o Cargo do professor " + nome);
                 break;

@@ -29,7 +29,7 @@ public class MenuAdminCurso {
             Thread.sleep(400);
             return;
         }
-        if (listaProf.isDiretor(profNum)) {
+        if (listaProf.isDiretor(profNum) || listaProf.isRegente(profNum)) {
             System.err.println("ERROR Professor ja e Diretor de Curso");
             Thread.sleep(400);
             return;

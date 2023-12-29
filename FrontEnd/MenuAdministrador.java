@@ -15,7 +15,7 @@ public class MenuAdministrador {
             Thread.sleep(1000);
             return;
         }else{
-            System.out.println("#AVISO Acesso Autorizado #");
+            System.out.println(Color.GREEN + "# AVISO Acesso Autorizado #"+ Color.RESET);
             Thread.sleep(500);
             menu(listaUC,listaProf,listAluno,listaCurso);
         }

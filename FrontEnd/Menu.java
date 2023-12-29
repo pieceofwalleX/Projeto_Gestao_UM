@@ -20,12 +20,12 @@ public class Menu {
             
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("#.....Universidade-do-Minho.....#");
+            System.out.format("%s#.....Universidade-do-Minho.....#%s\n",Color.WHITE_BOLD,Color.RESET);
             System.out.println("#                               #");
-            System.out.println("#1. Administracao               #");
-            System.out.println("#2. Menu Professor              #");
+            System.out.format("#%s1.%s Administracao               #\n",Color.BLUE_BOLD,Color.RESET);
+            System.out.format("#%s2.%s Menu Professor              #\n",Color.BLUE_BOLD,Color.RESET);
             System.out.println("#                               #");
-            System.out.println("#0. Sair                        #");
+            System.out.format("#%s0.%s Sair                        #\n",Color.BLUE_BOLD,Color.RESET);
             System.out.println("#...............................#");
             opcao = in.nextInt();
             

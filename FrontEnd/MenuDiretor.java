@@ -23,7 +23,7 @@ public class MenuDiretor {
             System.out.println("#.....Universidade.do.Minho.....#");
             System.out.println("#.........Gestao..Curso.........#");
             System.out.println("#                               #");
-            System.out.format("# Diretor: %s    [%s]\t#",p.getNome(),c.getDesignacao());
+            System.out.format("# Diretor: %s    %s[%s]%s\t#",p.getNome(),Color.RED,c.getDesignacao(),Color.RESET);
             System.out.println("\n#                               #");
             System.out.println("#1. Gerir Alunos                #");
             System.out.println("#                               #");

@@ -31,8 +31,8 @@ public class MenuAdminUC {
             Thread.sleep(400);
             return;
         }
-        if (listaProf.isRegente(profNum)) {
-            System.err.println("ERROR Professor ja e Regente");
+        if (listaProf.isRegente(profNum) || listaProf.isDiretor(profNum)) {
+            System.err.println("ERROR Professor ja e Regente/Diretor");
             Thread.sleep(400);
             return;
         }
