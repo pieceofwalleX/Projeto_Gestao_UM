@@ -5,6 +5,7 @@ import java.util.Scanner;
 import BackEnd.UC;
 import BackEnd.Listas.*;
 import BackEnd.Professor.Professor;
+import FrontEnd.Color;
 
 public class MenuAdminUC {
     static final Scanner in = new Scanner(System.in);
@@ -14,7 +15,7 @@ public class MenuAdminUC {
         String profNum;
         UC uc = new UC();
         Professor prof = new Professor();
-        System.out.println("#.....Universidade.do.Minho.....#");
+        System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
         System.out.println("#...........Gestao.UC...........#");
         System.out.println("# Descricao da UC: ");
         uc.setDesignacao(in.nextLine());
@@ -47,11 +48,11 @@ public class MenuAdminUC {
 
     public static void gestaoUC(ListUC listaUC, ListProfessore listaProf) throws InterruptedException {
 
-        int opcao = 0;
+        String opcao;
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("#.....Universidade.do.Minho.....#");
+            System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
             System.out.println("#...........Gestao.UC...........#");
             System.out.println("#                               #");
             System.out.println("#1. Resgistrar UC               #");
@@ -62,17 +63,17 @@ public class MenuAdminUC {
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
             System.out.println("#...............................#");
-            opcao = in.nextInt();
+            opcao = in.next();
 
             switch (opcao) {
-                case 0:
+                case "0":
                     break;
-                case 1:
+                case "1":
                     // Registro de novas UCs;
                     addUC(listaUC, listaProf);
                     break;
-                case 4:
-                    System.out.println("#..............Universidade.do.Minho..............#");
+                case "4":
+                    System.out.format("#..............Universidade.do.%sMinho%s..............#\n",Color.RED_BOLD,Color.RESET);
                     System.out.println("#....................Gestao.UC....................#");
                     listaUC.listarUC(true); // O boolean server para listar caso seja true, e apenas contar caso seja
                                             // false
@@ -80,8 +81,8 @@ public class MenuAdminUC {
                     in.nextLine();
                     in.nextLine();
                     break;
-                case 5:
-                    System.out.println("#.....Universidade.do.Minho.....#");
+                case "5":
+                System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
                     System.out.println("#...........Gestao.UC...........#");
                     System.out.println("#..........Eliminar.UC..........#");
                     System.out.println("# Id: ");
@@ -92,6 +93,6 @@ public class MenuAdminUC {
                     System.err.println("ERROR Opcao Invalida #");
                     break;
             }
-        } while (opcao != 0);
+        } while (!opcao.equals("0"));
     }
 }
