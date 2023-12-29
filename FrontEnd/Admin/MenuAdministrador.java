@@ -1,6 +1,7 @@
-package FrontEnd;
+package FrontEnd.Admin;
 import java.util.Scanner;
 import BackEnd.Listas.*;
+import FrontEnd.Color;
 
 public class MenuAdministrador {
     private static int authPin = 1234;
@@ -8,10 +9,10 @@ public class MenuAdministrador {
     public static void Auth(ListUC listaUC,ListProfessore listaProf,ListAluno listAluno,ListCurso listaCurso) throws InterruptedException{
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        System.out.println("#-----Universidade-do-Minho-----#");
+        System.out.println("#.....Universidade-do-Minho.....#");
         System.out.println("#.Codigo de Autenticacao >");
         if  (in.nextInt() != authPin){
-            System.err.println("#Error Codigo Invalido #");
+            System.out.println(Color.RED + "#Error Codigo Invalido #" + Color.RESET);
             Thread.sleep(1000);
             return;
         }else{
@@ -19,7 +20,7 @@ public class MenuAdministrador {
             Thread.sleep(500);
             menu(listaUC,listaProf,listAluno,listaCurso);
         }
-        System.out.println("#-------------------------------#");
+        System.out.println("#...............................#");
     }
 
     public static void menu(ListUC listaUC,ListProfessore listaProf,ListAluno listaAluno, ListCurso listaCurso){
@@ -28,8 +29,8 @@ public class MenuAdministrador {
         do{
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("#-----Universidade-do-Minho-----#");
-            System.out.println("#---------Administracao---------#");
+            System.out.println("#.....Universidade.do.Minho.....#");
+            System.out.println("#.........Administracao.........#");
             System.out.println("#                               #");
             System.out.println("#1. Gerir Professor             #");
             System.out.println("#2. Gerir Curso                 #");
@@ -37,7 +38,7 @@ public class MenuAdministrador {
             System.out.println("#4. Listar Informacao           #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
-            System.out.println("#-------------------------------#");
+            System.out.println("#...............................#");
             opcao = in.nextInt();
 
             switch (opcao){

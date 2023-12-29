@@ -1,11 +1,16 @@
-package FrontEnd;
+package FrontEnd.Admin;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 import BackEnd.UC;
 import BackEnd.Listas.ListProfessore;
 import BackEnd.Listas.ListUC;
 import BackEnd.Professor.Professor;
+import FrontEnd.Color;
 
 public class MenuAdminProfessores {
     static final Scanner in = new Scanner(System.in);
@@ -19,6 +24,7 @@ public class MenuAdminProfessores {
         System.out.println("#......Gestao..Professores.....#");
         System.out.println("# Numero do Professor: ");
         u.setNumMec(in.nextLine());
+        //Verificar se o Numero de Professor ja Existe
         if (listaProfessore.checkNumMec(u.getNumMec())) {
             return;
         }
@@ -26,11 +32,12 @@ public class MenuAdminProfessores {
         u.setNome(in.nextLine());
         System.out.println("# Digite a data de Inicio(ddmmyyyy)");
         data = in.nextLine();
-        if (data.length() < 8 || data.length() > 8) {
-            System.err.println("#ERROR Data Invalida");
-            Thread.sleep(700);
-            return;
+        try{
+            LocalDate.parse(data, DateTimeFormatter.ofPattern("d/M/yyyy"));
+        }catch(DateTimeParseException e){
+            System.out.println(Color.RED_BOLD +"#ERROR "+ data + " nao e uma data valida." + Color.RESET);
         }
+
         u.setDataInicio(data);
         System.out.println("#...............................#");
         System.out.format("# Resgistrado Professor \n#NUM: %s \n#Nome: %s \n#Cargo: %s \n#Data de Inicio: %s\n",

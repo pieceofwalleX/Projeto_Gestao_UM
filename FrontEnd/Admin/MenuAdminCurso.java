@@ -1,4 +1,4 @@
-package FrontEnd;
+package FrontEnd.Admin;
 
 import java.util.Scanner;
 

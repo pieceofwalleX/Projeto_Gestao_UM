@@ -7,6 +7,7 @@ package FrontEnd;
  */
 public class Color {
     public static final String RESET = "\u001B[0m";
+
     public static final String BLACK = "\033[0;90m"; 
     public static final String RED = "\033[0;91m";  
     public static final String GREEN= "\033[0;92m"; 

@@ -25,7 +25,7 @@ public class MenuProfessor {
             Thread.sleep(500);
             menu(listaSumarios, listaUC, listaProf,listaCurso,listaAluno, id);
         } else {
-            System.out.println("#Error Codigo Invalido #");
+            System.out.println(Color.RED + "#Error Codigo Invalido #" + Color.RESET);
             Thread.sleep(800);
             return;
         }
