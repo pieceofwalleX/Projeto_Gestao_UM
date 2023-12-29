@@ -33,7 +33,7 @@ public class Curso {
     public String getDesignacao(){
         return designacao;
     }
-    public Professor getProf(){
+    public Professor getDiretor(){
         return diretor;
     }
     /*

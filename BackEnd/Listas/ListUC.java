@@ -2,8 +2,10 @@ package BackEnd.Listas;
 
 import java.util.ArrayList;
 
+import BackEnd.Curso;
 import BackEnd.UC;
 import BackEnd.Professor.Professor;
+import FrontEnd.Color;
 
 public class ListUC {
       private ArrayList<UC> lista;
@@ -28,6 +30,16 @@ public class ListUC {
         }
         return elementos;
     }
+    public void listarUCSimples(){
+        int i = 0;
+        for(UC u: lista){
+            System.out.println(Color.PURPLE + i + Color.RESET + u.getDesignacao() + "\t");
+            if(i % 5 == 0){
+                System.out.println("\n");
+            }
+            i++;
+        }
+    }
     public boolean checkID(int id){
         for(UC uc:lista){
             if(id == uc.getId()){
@@ -41,6 +53,14 @@ public class ListUC {
         for(UC u:lista){
             regente = u.getRegente();
             if(regente.getNumMec().equals(id)){
+                return u;
+            }
+        }
+        return null;
+    }
+    public UC getUCById(int id){
+        for(UC u:lista){
+            if(u.getId() == id){
                 return u;
             }
         }
