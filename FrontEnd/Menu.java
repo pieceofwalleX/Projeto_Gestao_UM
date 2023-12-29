@@ -7,7 +7,7 @@ import FrontEnd.Admin.MenuAdministrador;
 public class Menu {
 
     static final Scanner in = new Scanner(System.in);
-    static final Consola verify = new Consola();
+
 
     public static void main(String[] args) throws InterruptedException {
         // Inicializar as Listas
@@ -23,7 +23,7 @@ public class Menu {
 
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
-                System.out.format("#.....Universidade-do-Minho.....#\n");
+                System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
                 System.out.println("#                               #");
                 System.out.format("#%s1.%s Administracao               #\n", Color.BLUE, Color.RESET);
                 System.out.format("#%s2.%s Menu Professor              #\n", Color.BLUE, Color.RESET);

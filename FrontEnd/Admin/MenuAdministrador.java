@@ -9,7 +9,7 @@ public class MenuAdministrador {
     public static void Auth(ListUC listaUC,ListProfessore listaProf,ListAluno listAluno,ListCurso listaCurso) throws InterruptedException{
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        System.out.println("#.....Universidade-do-Minho.....#");
+        System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
         System.out.println("#.Codigo de Autenticacao >");
         if  (in.nextInt() != authPin){
             System.out.println(Color.RED + "#Error Codigo Invalido #" + Color.RESET);
@@ -24,12 +24,12 @@ public class MenuAdministrador {
     }
 
     public static void menu(ListUC listaUC,ListProfessore listaProf,ListAluno listaAluno, ListCurso listaCurso){
-        int opcao = 0;
+        String opcao;
         try{
         do{
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("#.....Universidade.do.Minho.....#");
+            System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
             System.out.println("#.........Administracao.........#");
             System.out.println("#                               #");
             System.out.println("#1. Gerir Professor             #");
@@ -39,23 +39,23 @@ public class MenuAdministrador {
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
             System.out.println("#...............................#");
-            opcao = in.nextInt();
+            opcao = in.next();
 
             switch (opcao){
-                case 0:
+                case "0":
                     break;
-                case 1:
+                case "1":
                     //Menu Gestao de Professores;
                     MenuAdminProfessores.menu(listaProf,listaUC);
                     break;
-                case 2:
+                case "2":
                     MenuAdminCurso.menu(listaCurso, listaUC, listaProf, listaAluno);
                     break;
-                case 3:
+                case "3":
                     MenuAdminUC.gestaoUC(listaUC,listaProf);
                     //Menu Gestao de Curso/UC
                     break;
-                case 4:
+                case "4":
                     //Verificar que informacao o usuario quer listar
                     //Menu Listagem
                     break;
@@ -64,7 +64,7 @@ public class MenuAdministrador {
                     break;
             }
 
-        }while(opcao != 0);
+        }while(!opcao.equals("0"));
     }catch (Exception e) {
         System.err.println("#ERROR Algo deu errado #");
     }

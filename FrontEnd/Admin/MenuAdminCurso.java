@@ -8,6 +8,7 @@ import BackEnd.Listas.ListCurso;
 import BackEnd.Listas.ListProfessore;
 import BackEnd.Listas.ListUC;
 import BackEnd.Professor.Professor;
+import FrontEnd.Color;
 
 public class MenuAdminCurso {
     static final Scanner in = new Scanner(System.in);
@@ -18,7 +19,7 @@ public class MenuAdminCurso {
         String profNum;
         Professor prof = new Professor();
         Curso curso = new Curso();
-        System.out.println("#.....Universidade.do.Minho.....#");
+        System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
         System.out.println("#...........Gestao.UC...........#");
         System.out.println("# Descricao do Curso: ");
         curso.setDesignacao(in.next());
@@ -35,19 +36,19 @@ public class MenuAdminCurso {
             return;
         }
         prof = listaProf.getProfByNum(profNum);
-        try{
+        try {
             prof.setCargo("Diretor");
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println("#ERROR Falha ao trocar o cargo");
             Thread.sleep(400);
         }
-        try{
+        try {
             curso.setDiretor(prof);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println("#ERROR Falha ao trocar o cargo");
             Thread.sleep(400);
         }
-        
+
         System.out.format("# Registado Curso: %d , %s , %s\t#\n", curso.getId(), profNum, curso.getDesignacao());
         System.out.println("#...............................#");
         Thread.sleep(600);
@@ -60,8 +61,8 @@ public class MenuAdminCurso {
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("#-----Universidade-do-Minho-----#");
-            System.out.println("#---------Gestao--Curso---------#");
+            System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
+            System.out.println("#.........Gestao..Curso.........#");
             System.out.println("#                               #");
             System.out.println("#1. Resgistrar Curso            #");
             System.out.println("#2. Editar Informaceos Curso    #");
@@ -69,7 +70,7 @@ public class MenuAdminCurso {
             System.out.println("#5. Remover Curso               #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
-            System.out.println("#-------------------------------#");
+            System.out.println("#...............................#");
             opcao = in.nextInt();
 
             switch (opcao) {
@@ -80,17 +81,17 @@ public class MenuAdminCurso {
                     addCurso(listaUC, listaProf, listaAluno, listaCurso);
                     break;
                 case 4:
-                    System.out.println("#-----Universidade-do-Minho-----#");
-                    System.out.println("#---------Gestao--Curso---------#");
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
+                    System.out.println("#.........Gestao..Curso.........#");
 
                     System.out.println("Pressione ENTER para continuar ...");
                     in.nextLine();
                     in.nextLine();
                     break;
                 case 5:
-                    System.out.println("#-----Universidade-do-Minho-----#");
-                    System.out.println("#---------Gestao--Curso---------#");
-                    System.out.println("#--------Eliminar--Curso--------#");
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
+                    System.out.println("#.........Gestao..Curso.........#");
+                    System.out.println("#........Eliminar..Curso........#");
                     System.out.println("# Id: ");
 
                     Thread.sleep(800);

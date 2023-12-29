@@ -16,35 +16,51 @@ public class MenuAdminProfessores {
     static final Scanner in = new Scanner(System.in);
 
     public static void addProf(ListProfessore listaProfessore) throws InterruptedException {
-
         String data;
         Professor u = new Professor();
-        in.nextLine();
-        System.out.println("#.....Universidade-do-Minho.....#");
+
+        in.nextLine(); // Limpar o buffer
+
+        System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
         System.out.println("#......Gestao..Professores.....#");
+
         System.out.println("# Numero do Professor: ");
-        u.setNumMec(in.nextLine());
-        //Verificar se o Numero de Professor ja Existe
+        if (!u.setNumMec(in.next())) {
+            return;
+        }
+
+        // Verificar se o Numero de Professor já Existe
         if (listaProfessore.checkNumMec(u.getNumMec())) {
             return;
         }
+
+        // Limpar o buffer
+        in.nextLine();
+
         System.out.println("# Nome do Professor: ");
         u.setNome(in.nextLine());
-        System.out.println("# Digite a data de Inicio(ddmmyyyy)");
+
+        System.out.println("# Digite a data de Inicio (ddMMyyyy): ");
         data = in.nextLine();
-        try{
-            LocalDate.parse(data, DateTimeFormatter.ofPattern("d/M/yyyy"));
-        }catch(DateTimeParseException e){
-            System.out.println(Color.RED_BOLD +"#ERROR "+ data + " nao e uma data valida." + Color.RESET);
+        try {
+            LocalDate dataInicio = LocalDate.parse(data, DateTimeFormatter.ofPattern("ddMMyyyy"));
+            if (!u.setDataInicio(dataInicio)) {
+                System.err.println(Color.RED + "#ERROR Data Invalida" + Color.RESET);
+                Thread.sleep(450);
+                return;
+            }
+
+            System.out.println("#...............................#");
+            System.out.format("# Resgistrado Professor \n#NUM: %s \n#Nome: %s \n#Cargo: %s \n#Data de Inicio: %s\n",
+                    u.getNumMec(), u.getNome(), u.getCargoString(), u.transformData());
+            System.out.println("#...............................#");
+
+            listaProfessore.adicionar(u);
+        } catch (DateTimeParseException e) {
+            System.out.println(Color.RED_BOLD + "#ERROR " + data + " não é uma data válida." + Color.RESET);
         }
 
-        u.setDataInicio(data);
-        System.out.println("#...............................#");
-        System.out.format("# Resgistrado Professor \n#NUM: %s \n#Nome: %s \n#Cargo: %s \n#Data de Inicio: %s\n",
-                u.getNumMec(), u.getNome(), u.getCargoString(), u.transformData());
-        System.out.println("#...............................#");
-        Thread.sleep(2250);
-        listaProfessore.adicionar(u);
+        Thread.sleep(450);
     }
 
     public static void removeProf(ListProfessore listaProf, ListUC listaUC) throws InterruptedException {
@@ -55,7 +71,7 @@ public class MenuAdminProfessores {
         int maxDots = 3;
         int currentDot = 0;
 
-        System.out.println("#-----Universidade-do-Minho-----#");
+        System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
         in.nextLine();
         System.out.println("#......Gestao..Professores......#");
         System.out.println("#......Eliminar.Professore......#");
@@ -66,10 +82,10 @@ public class MenuAdminProfessores {
             Thread.sleep(400);
             return;
         }
-        if(listaProf.isRegente(id)) {
+        if (listaProf.isRegente(id)) {
             uc = listaUC.getUCByRegente(id);
             uc.setRegente(null);
-            //Animaca
+            // Animaca
             for (int r = 0; r < 4; r++) {
                 try {
                     Thread.sleep(300);
@@ -86,7 +102,7 @@ public class MenuAdminProfessores {
         }
 
         listaProf.removePorf(id);
-        //Animacao
+        // Animacao
         for (int r = 0; r < 4; r++) {
             try {
                 Thread.sleep(300);
@@ -105,11 +121,11 @@ public class MenuAdminProfessores {
 
     public static void menu(ListProfessore listaProf, ListUC listaUC) throws InterruptedException {
 
-        int opcao = 0;
+        String opcao;
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("#.....Universidade-do-Minho.....#");
+            System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
             System.out.println("#......Gestao..Professores......#");
             System.out.println("#                               #");
             System.out.println("#1. Resgistrar Professor        #");
@@ -119,17 +135,17 @@ public class MenuAdminProfessores {
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
             System.out.println("#...............................#");
-            opcao = in.nextInt();
+            opcao = in.next();
 
             switch (opcao) {
-                case 0:
+                case "0":
                     break;
-                case 1:
+                case "1":
                     // Registro de novas UCs;
                     addProf(listaProf);
                     break;
-                case 3:
-                    System.out.println("#.....Universidade.do.Minho.....#");
+                case "3":
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#......Gestao..Professores......#");
                     listaProf.listarProf(true); // O boolean server para listar caso seja true, e apenas contar caso
                                                 // seja false
@@ -137,13 +153,13 @@ public class MenuAdminProfessores {
                     in.nextLine();
                     in.nextLine();
                     break;
-                case 4:
+                case "4":
                     removeProf(listaProf, listaUC);
                     break;
                 default:
                     System.err.println("ERROR Opcao Invalida #");
                     break;
             }
-        } while (opcao != 0);
+        } while (!opcao.equals("0"));
     }
 }

@@ -14,28 +14,29 @@ public class MenuDiretor {
     
      public static void menu(ListCurso listaCurso, ListUC listaUC, ListProfessore listaProf, ListAluno listaAluno,Professor p)
             throws InterruptedException {
-        int opcao = 0;
+        String opcao;
         Curso c = new Curso();
         c = listaCurso.getCursoByDiretor(p.getNumMec());
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("#.....Universidade.do.Minho.....#");
+            System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
             System.out.println("#.........Gestao..Curso.........#");
             System.out.println("#                               #");
             System.out.format("# Diretor: %s    %s[%s]%s\t#",p.getNome(),Color.RED,c.getDesignacao(),Color.RESET);
             System.out.println("\n#                               #");
-            System.out.println("#1. Gerir Alunos                #");
+            System.out.println("#1. Alterar Designacao do Curso #");
+            System.out.println("#2. Listar Professores/Alunos   #");
             System.out.println("#                               #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
             System.out.println("#...............................#");
-            opcao = in.nextInt();
+            opcao = in.next();
 
             switch (opcao) {
-                case 0:
+                case "0":
                     break;
-                case 1:
+                case "1":
                     // Registro de novas UCs;
                     
                     break;
@@ -43,6 +44,6 @@ public class MenuDiretor {
                     System.err.println("ERROR Opcao Invalida #");
                     break;
             }
-        } while (opcao != 0);
+        } while (!opcao.equals("0"));
     }
 }

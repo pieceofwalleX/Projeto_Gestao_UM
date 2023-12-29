@@ -15,7 +15,7 @@ public class MenuProfessor {
 
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        System.out.println("#.....Universidade-do-Minho.....#");
+        System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
         System.out.println("#.Codigo de Professor >");
 
         id = in.nextLine();
@@ -41,7 +41,7 @@ public class MenuProfessor {
         boolean inUCList;
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        System.out.println("#.....Universidade.do.Minho.....#");
+        System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
         System.out.println("#.......Professor.Sumario.......#");
         System.out.println("#                               #");
         System.out.println("#UC: ");
@@ -90,7 +90,7 @@ public class MenuProfessor {
         p = listaProf.getProfByNum(id);
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        System.out.println("#.....Universidade.do.Minho.....#");
+        System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
         System.out.println("#.......Professor.Sumario.......#");
         System.out.println("#                               #");
         System.out.println("#UC: ");
@@ -118,17 +118,19 @@ public class MenuProfessor {
     public static void menu(HashSumario listaSumarios, ListUC listaUC, ListProfessore listaProf,ListCurso listaCurso,ListAluno listaAluno, String id)
             throws InterruptedException {
 
-        int opcao = 0;
+        String opcao;
         Professor p = new Professor();
+
         try{
             p = listaProf.getProfByNum(id);
         }catch(Exception e){
             System.err.println("#ERROR Falha ao obter informacao do professor");
         }
+
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("#..........Universidade.do.Minho..........#");
+            System.out.format("#..........Universidade.do.%sMinho%s..........#",Color.RED_BOLD,Color.RESET);
             System.out.format("#......Professor.%s..[%s].......#\n",p.getNome(),p.getCargoString());
             System.out.println("#                                         #");
             System.out.println("#1. Criar Sumario                         #");
@@ -141,21 +143,21 @@ public class MenuProfessor {
             System.out.println("#                                         #");
             System.out.println("#0. Sair                                  #");
             System.out.println("#.........................................#");
-            opcao = in.nextInt();
+            opcao = in.next();
 
             switch (opcao) {
-                case 0:
+                case "0":
                     break;
-                case 1:
+                case "1":
                     // Menu Gestao de Projefores;
                     newSumario(listaSumarios, listaUC, listaProf, id);
                     break;
-                case 2:
+                case "2":
                     // Verificar se o usuario quer modificar uma UC ou um Curso
                     // Menu Gestao de Curso/UC
                     printSumarios(listaSumarios,listaUC,listaProf,id);
                     break;
-                case 3:
+                case "3":
                     if(p.getCargoString() == "Regente"){
                         //Menu Regente
                     }else if(p.getCargoString() == "Diretor"){
@@ -167,6 +169,6 @@ public class MenuProfessor {
                     break;
             }
 
-        } while (opcao != 0);
+        } while (!opcao.equals("0"));
     }
 }
