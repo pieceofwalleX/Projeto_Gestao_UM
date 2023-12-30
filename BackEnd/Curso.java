@@ -6,7 +6,7 @@ import BackEnd.Professor.Professor;
 
 public class Curso {
     private static int nextId = 1;
-    private int Id;
+    private int id;
     private String designacao;
     private ListUC listaUC;
     private ListAluno listaAluno;
@@ -23,12 +23,27 @@ public class Curso {
      * o id aumentar
      */
     public Curso(boolean novo){
-        Id = nextId;
+        id = nextId;
         designacao = "";
         listaUC = new ListUC();
         listaAluno = new ListAluno();
         diretor = new Professor();
         nextId++;
+    }
+
+    public void setId(int id) {
+        /*
+         * Esta funcao sera usado caso um Curso seja removido,
+         * Sera usado para trocar os ids dos proximos Cursos
+         */
+        this.id = id;
+    }
+    public void setNextId(int id) {
+        /*
+         * Esta funcao sera usado caso um Curso seja removido,
+         * Sera usado para trocar os ids dos proximos Cursos
+         */
+        nextId = id;
     }
 
     public void setDesignacao(String designacao){
@@ -38,7 +53,10 @@ public class Curso {
         this.diretor = diretor;
     }
     public int getId(){
-        return Id;
+        return id;
+    }
+    public int getNextId(){
+        return nextId;
     }
     public String getDesignacao(){
         return designacao;

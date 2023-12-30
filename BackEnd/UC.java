@@ -42,6 +42,13 @@ public class UC {
          */
         this.id = id;
     }
+    public static void setNextId(int id) {
+        /*
+         * Esta funcao sera usado caso uma UC seja removida,
+         * Sera usado para trocar os ids das proximas UCs
+         */
+        nextId = id;
+    }
 
     public void setDesignacao(String designacao) {
         this.designacao = designacao;
@@ -52,6 +59,9 @@ public class UC {
     }
 
     public int getId() {
+        return id;
+    }
+    public int getNextId() {
         return id;
     }
 

@@ -128,12 +128,12 @@ public class MenuAdminCurso {
                     if(!check.isInteger(input)){
                         return;
                     }
-                    c.removeUC(Integer.parseInt(input) - 1);
+                    c.removeUC(Integer.parseInt(input));
                     break;
                 case "4":
                     System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#.........Gestao..Curso.........#");
-
+                    c.listarUC();
                     break;
                 default:
                     System.err.println("ERROR Opcao Invalida #");
@@ -202,6 +202,9 @@ public class MenuAdminCurso {
                     if(!check.isInteger(id)){
                         return;
                     }
+                    if(!listaCurso.checkCursoById(id)){
+                        return;
+                    }
                     /*
                      * Remover o cargo de Diretor
                      */
@@ -214,7 +217,7 @@ public class MenuAdminCurso {
                     listaCurso.remove(Integer.parseInt(id));
                     
 
-                    Thread.sleep(800);
+                    Thread.sleep(1000);
                     break;
                 default:
                     System.err.println("ERROR Opcao Invalida #");

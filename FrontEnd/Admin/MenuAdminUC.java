@@ -6,9 +6,11 @@ import BackEnd.UC;
 import BackEnd.Listas.*;
 import BackEnd.Professor.Professor;
 import FrontEnd.Color;
+import FrontEnd.Verification;
 
 public class MenuAdminUC {
     static final Scanner in = new Scanner(System.in);
+    static final Verification check = new Verification();
 
     public static void addUC(ListUC listaUC, ListProfessore listaProf) throws InterruptedException {
         in.nextLine();
@@ -48,7 +50,9 @@ public class MenuAdminUC {
 
     public static void gestaoUC(ListUC listaUC, ListProfessore listaProf) throws InterruptedException {
 
-        String opcao;
+        String opcao,id;
+        UC uc = new UC();
+        Professor professor = new Professor();
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -86,6 +90,17 @@ public class MenuAdminUC {
                     System.out.println("#...........Gestao.UC...........#");
                     System.out.println("#..........Eliminar.UC..........#");
                     System.out.println("# Id: ");
+                    id = in.next();
+                    if(!check.isInteger(id)){
+                        return;
+                    }
+                    /*
+                     * Remover o cargo do Professor Regente
+                     */
+                    uc = listaUC.getUCById(Integer.parseInt(id));
+                    professor = uc.getRegente();
+                    professor.setCargo("Normal");
+
                     listaUC.removeUC(in.nextInt());
                     Thread.sleep(800);
                     break;

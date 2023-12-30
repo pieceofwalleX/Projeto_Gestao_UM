@@ -32,7 +32,7 @@ public class ListUC {
     public void listarUCSimples(){
         int i = 0;
         for(UC u: lista){
-            System.out.println(Color.PURPLE + i + Color.RESET + u.getDesignacao() + "\t");
+            System.out.println(Color.PURPLE + i + Color.RESET + ". "+ u.getDesignacao() + "\t");
             if(i % 5 == 0){
                 System.out.println("\n");
             }
