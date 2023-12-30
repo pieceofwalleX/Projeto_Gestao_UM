@@ -6,8 +6,8 @@ import BackEnd.UC;
 import BackEnd.Professor.Professor;
 import FrontEnd.Color;
 
-public class ListUC {
-      private ArrayList<UC> lista;
+public class ListUC{
+    private ArrayList<UC> lista;
 
     public ListUC(){
         lista = new ArrayList<>();
@@ -32,9 +32,10 @@ public class ListUC {
     public void listarUCSimples(){
         int i = 0;
         for(UC u: lista){
+            System.out.println("\t");
             System.out.println(Color.PURPLE + i + Color.RESET + ". "+ u.getDesignacao() + "\t");
             if(i % 5 == 0){
-                System.out.println("\n");
+                System.out.println("\n\t");
             }
             i++;
         }
@@ -87,7 +88,10 @@ public class ListUC {
 
         }
         uc.setNextId(lista.size() + 1);
-
-
     }
+
+    public ArrayList<UC> getLista() {
+        return lista;
+    }
+
 }

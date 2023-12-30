@@ -2,13 +2,16 @@ package BackEnd.Professor;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import BackEnd.UC;
 import BackEnd.Listas.ListUC;
 import FrontEnd.Color;
+import FrontEnd.Verification;
 
 public class Professor {
+    final static Verification check = new Verification();
     private enum tipoProfessor {
         Normal,
         Regente,
@@ -39,16 +42,13 @@ public class Professor {
 
     public boolean setNumMec(String numMec) throws InterruptedException {
         // Verificar se numMec e um Inteiro
-        int number;
-        try {
-            number = Integer.valueOf(numMec);
-        } catch (NumberFormatException e) {
+        if(!check.isInteger(numMec)){
             System.err.println(Color.RED + "#ERROR Caracter invalido" + Color.RESET);
             Thread.sleep(400);
             return false;
         }
         // Verificar se numMec > 0
-        if (number <= 0) {
+        if(Integer.parseInt(numMec) <= 0) {
             System.err.println(Color.RED + "#ERROR Numero invalido" + Color.RESET);
             Thread.sleep(400);
             return false;
@@ -128,10 +128,23 @@ public class Professor {
      * Metodos Lista Servico Docente
      */
 
-    public void addServico(UC u){
+    public void addServico(UC u) {
         lista.adicionar(u);
     }
-    public void removeServico(int id) throws InterruptedException{
+
+    public void removeServico(int id) throws InterruptedException {
         lista.removeUC(id);
     }
+
+    public ListUC getListaServico() {
+        return lista;
+    }
+
+    public void removeProfFromUC(String id) {
+        ListUC listaUC = getListaServico();
+        for (UC u : listaUC.getLista()) {
+            u.removeProf(id);
+        }
+    }
+
 }

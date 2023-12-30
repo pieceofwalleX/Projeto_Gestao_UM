@@ -31,16 +31,28 @@ public class MenuAdminUC {
          */
         if (!listaProf.checkNumMec(profNum)) {
             System.err.println("ERROR Falha ao encontrar professor");
+            uc.setNextId(uc.getId());
             Thread.sleep(400);
             return;
         }
         if (listaProf.isRegente(profNum) || listaProf.isDiretor(profNum)) {
             System.err.println("ERROR Professor ja e Regente/Diretor");
+            uc.setNextId(uc.getId());
             Thread.sleep(400);
             return;
         }
+        /*
+         * Mudar o cargo do professor para Regente
+         */
         prof = listaProf.getProfByNum(profNum);
         prof.setCargo("Regente");
+        /*
+         * Adicionar a UC ao servico docente do professor e
+         * Adicionar o Professor a Lista de Professores da UC
+         */
+        prof.addServico(uc);
+        uc.adicionarProf(prof);
+
         uc.setRegente(listaProf.getProfByNum(profNum));
         System.out.format("# Registada UC: %d , %s , %s\t#\n", uc.getId(), profNum, uc.getDesignacao());
         System.out.println("#...............................#");

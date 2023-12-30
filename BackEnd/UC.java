@@ -84,4 +84,8 @@ public class UC {
     public void listarEquipaDocente() {
         listaDocente.listarProfSimples(true);
     }
+
+    public ListProfessore getListDocente(){
+        return listaDocente;
+    }
 }

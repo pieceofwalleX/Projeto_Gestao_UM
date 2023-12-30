@@ -82,5 +82,8 @@ public class Curso {
     public void listarUC(){
         listaUC.listarUC(true);
     }
+    public void listarSimplesUC(){
+        listaUC.listarUCSimples();
+    }
 
 }
