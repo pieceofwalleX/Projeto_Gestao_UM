@@ -73,8 +73,8 @@ public class Curso {
     public void addAluno(Aluno a){
         listaAluno.adicionar(a);
     }
-    public void removeUC(int id){
-        listaUC.removeUC(id);;
+    public void removeUC(int id) throws InterruptedException{
+        listaUC.removeUC(id);
     }
     public void removeAluno(String id){
         listaAluno.remove(id);

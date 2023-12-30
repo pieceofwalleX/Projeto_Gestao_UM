@@ -42,7 +42,7 @@ public class UC {
          */
         this.id = id;
     }
-    public static void setNextId(int id) {
+    public void setNextId(int id) {
         /*
          * Esta funcao sera usado caso uma UC seja removida,
          * Sera usado para trocar os ids das proximas UCs

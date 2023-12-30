@@ -21,7 +21,7 @@ public class ListUC {
         for(UC uc:lista){
             regente = uc.getRegente();
             if(print == true) {
-                System.out.format("# ID: %d Designacao: %s Regente: %s\t  #\n", uc.getId(), uc.getDesignacao(), regente == null ? "Sem Regente" : regente.getNome());
+                System.out.format("# ID: %d Designacao: %s Regente: %s\t\t  #\n", uc.getId(), uc.getDesignacao(), regente == null ? "Sem Regente" : regente.getNome());
                 System.out.println("#.................................................#");
             }else{                     
                 elementos++;
@@ -65,14 +65,30 @@ public class ListUC {
         }
         return null;
     }
-    public void removeUC(int id){
+    public void removeUC(int id) throws InterruptedException{
         if(!checkID(id)){
-            System.err.println("#Error ID UC nao existe ");
+            System.err.println("#Error ID Curso nao existe ");
             return;
         }
-        lista.remove(id-1); //id - 1 , porque os ids das UCs comecam no 1 e nao no 0 ao contrario dos index
-        for(UC uc:lista.subList(id - 1, lista.size())){
-            uc.setId(id+1);
+        UC uc = getUCById(id);
+        if(lista.size() == 1){
+            uc.setNextId(1);
+            System.out.println(uc.getNextId());
         }
+        lista.remove(id - 1); //id - 1 , porque os ids das UCs comecam no 1 e nao no 0 ao contrario dos index
+        int r = 0;
+        for (int i = id - 1; i < lista.size(); i++) {
+            UC u = lista.get(i);
+            u.setId(i + 1);
+    
+            // Atualiza o nextId do último curso na lista
+            if (i == lista.size()) {
+                uc = u;
+            }
+            r = i;
+        }
+        uc.setNextId(lista.size() + 1);
+
+
     }
 }
