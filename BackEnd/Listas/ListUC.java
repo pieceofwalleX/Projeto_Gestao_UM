@@ -76,7 +76,6 @@ public class ListUC {
             System.out.println(uc.getNextId());
         }
         lista.remove(id - 1); //id - 1 , porque os ids das UCs comecam no 1 e nao no 0 ao contrario dos index
-        int r = 0;
         for (int i = id - 1; i < lista.size(); i++) {
             UC u = lista.get(i);
             u.setId(i + 1);
@@ -85,7 +84,7 @@ public class ListUC {
             if (i == lista.size()) {
                 uc = u;
             }
-            r = i;
+
         }
         uc.setNextId(lista.size() + 1);
 

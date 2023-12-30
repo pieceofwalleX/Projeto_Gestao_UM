@@ -3,6 +3,7 @@ package BackEnd.Listas;
 import java.util.ArrayList;
 
 import BackEnd.Professor.Professor;
+import FrontEnd.Color;
 
 public class ListProfessore {
      private ArrayList<Professor> lista;
@@ -18,6 +19,18 @@ public class ListProfessore {
         for(Professor prof:lista){
             if(print == true) {
                System.out.format("# Numero: %s \n# Nome: %s \n# Cargo: %s\n# Inicio das funcoes: %s\n", prof.getNumMec(), prof.getNome(),prof.getCargoString(),prof.transformData());
+               System.out.println("#-------------------------------#");
+            }else{
+                elementos++;
+            }
+        }
+        return elementos;
+    }
+    public int listarProfSimples(boolean print){
+        int elementos = 0;
+        for(Professor prof:lista){
+            if(print == true) {
+               System.out.format("# Numero: %s%s%s \n# Nome: %s \n",Color.PURPLE, prof.getNumMec(),Color.RESET, prof.getNome());
                System.out.println("#-------------------------------#");
             }else{
                 elementos++;

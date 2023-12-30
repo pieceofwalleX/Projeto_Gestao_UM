@@ -2,7 +2,10 @@ package BackEnd.Professor;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
+import BackEnd.UC;
+import BackEnd.Listas.ListUC;
 import FrontEnd.Color;
 
 public class Professor {
@@ -16,12 +19,14 @@ public class Professor {
     private String nome;
     private LocalDate data_inicio;
     private tipoProfessor cargo;
+    private ListUC lista;
 
     public Professor() {
         numMec = "";
         nome = "";
         data_inicio = null;
         cargo = tipoProfessor.Normal;
+        lista = new ListUC();
     }
 
     public Professor(String numMec, String nome, LocalDate data_inicio, tipoProfessor cargo) {
@@ -29,6 +34,7 @@ public class Professor {
         this.nome = nome;
         this.data_inicio = data_inicio;
         this.cargo = cargo;
+        lista = new ListUC();
     }
 
     public boolean setNumMec(String numMec) throws InterruptedException {
@@ -116,5 +122,16 @@ public class Professor {
             e.printStackTrace();
             return "Data inválida";
         }
+    }
+
+    /*
+     * Metodos Lista Servico Docente
+     */
+
+    public void addServico(UC u){
+        lista.adicionar(u);
+    }
+    public void removeServico(int id) throws InterruptedException{
+        lista.removeUC(id);
     }
 }

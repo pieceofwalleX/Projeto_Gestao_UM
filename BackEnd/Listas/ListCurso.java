@@ -63,7 +63,6 @@ public class ListCurso {
             System.out.println(curso.getNextId());
         }
         lista.remove(id - 1); //id - 1 , porque os ids das UCs comecam no 1 e nao no 0 ao contrario dos index
-        int r = 0;
         for (int i = id - 1; i < lista.size(); i++) {
             Curso c = lista.get(i);
             c.setId(i + 1);
@@ -72,7 +71,6 @@ public class ListCurso {
             if (i == lista.size()) {
                 curso = c;
             }
-            r = i;
         }
         curso.setNextId(lista.size() + 1);
 

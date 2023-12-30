@@ -24,8 +24,8 @@ public class MenuRegente {
             System.out.println("#                               #");
             System.out.format("# Regente: %s    %s[%s]%s\t#",p.getNome(),Color.PURPLE,c.getDesignacao(),Color.RESET);
             System.out.println("\n#                               #");
-            System.out.println("#1. Gerir Alunos                #");
-            System.out.println("#2. Consultar Assiduidade       #");
+            System.out.println("#1. Adiconar Aluno              #");
+            System.out.println("#2. Remover Aluno               #");
             System.out.println("#                               #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");

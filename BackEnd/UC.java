@@ -7,13 +7,13 @@ public class UC {
     private static int nextId = 1;
     private int id;
     private String designacao;
-    private ListProfessore listaDocente = new ListProfessore();
+    private ListProfessore listaDocente;
     private Professor regente;
 
     public UC() {
         designacao = "";
         regente = null;
-        listaDocente = null;
+        listaDocente = new ListProfessore();
     }
     /*
      * Este constructor e uma maneira de resolver o bug em que ao criar uma UC auxiliar
@@ -23,7 +23,7 @@ public class UC {
         designacao = "";
         id = nextId;
         regente = null;
-        listaDocente = null;
+        listaDocente = new ListProfessore();
         nextId++;
     }
 
@@ -77,8 +77,11 @@ public class UC {
         
         listaDocente.adicionar(p);
     }
+    public void removeProf(String id) {
+        listaDocente.removePorf(id);
+    }
 
     public void listarEquipaDocente() {
-        listaDocente.listarProf(true);
+        listaDocente.listarProfSimples(true);
     }
 }

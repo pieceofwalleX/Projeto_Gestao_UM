@@ -48,6 +48,92 @@ public class MenuAdminUC {
         listaUC.adicionar(uc);
     }
 
+    public static void gestaoEquipaDocente(UC uc, ListProfessore listaProf) throws InterruptedException{
+        String opcao,id;
+        Professor professor = new Professor();
+        do {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+            System.out.println("#...........Gestao.UC...........#");
+            System.out.println("#........Equipa..Docente........#");
+            System.out.println("#                               #");
+            System.out.println("#1. Adiconar Professor a Equipa #");
+            System.out.println("#2. Remover Professor da Equipa #");
+            System.out.println("#3. Listar Equipa Docente       #");
+            System.out.println("#                               #");
+            System.out.println("#0. Sair                        #");
+            System.out.println("#...............................#");
+            opcao = in.next();
+
+            switch (opcao) {
+                case "0":
+                    break;
+                case "1":
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+                    System.out.println("#...........Gestao.UC...........#");
+                    System.out.println("#.......Adicionar.Docente.......#");
+                    System.out.println("# Id: ");
+                    id = in.next();
+                    /*
+                     * Verificamos se o input e um inteiro
+                     */
+                    if(!check.isInteger(id)){
+                        return;
+                    }
+                    /*
+                     * Verificamos se o professor existe
+                     */
+                    if(!listaProf.checkNumMec(id)){
+                        return;
+                    }
+                    /*
+                     * Caso exista atualizamos o servico docente do professor e
+                     * Atualizamos a Equipa Docente da UC
+                     */
+                    professor = listaProf.getProfByNum(id);
+                    professor.addServico(uc);
+                    uc.adicionarProf(professor);
+
+                    Thread.sleep(500);
+
+                    break;
+                case "2":
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+                    System.out.println("#...........Gestao.UC...........#");
+                    System.out.println("#........Remover.Docente........#");
+                    System.out.println("# Id Professor: ");
+                    id = in.next();
+                    /*
+                     * Verificamos se o input e um inteiro
+                     */
+                    if(!check.isInteger(id)){
+                        return;
+                    }
+                    /*
+                     * Remover
+                     */
+                    professor = listaProf.getProfByNum(id);
+                    professor.removeServico(uc.getId());
+                    uc.removeProf(id);
+                    break;
+                case "3":
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+                    System.out.println("#...........Gestao.UC...........#");
+                    System.out.println("#............Docentes...........#");
+                    uc.listarEquipaDocente();
+                    System.out.println("Pressione ENTER para continuar ...");
+                    in.nextLine();
+                    in.nextLine();
+
+                    break;
+                default:
+                    System.err.println("ERROR Opcao Invalida #");
+                    break;
+            }
+        } while (!opcao.equals("0"));
+    }
+
     public static void gestaoUC(ListUC listaUC, ListProfessore listaProf) throws InterruptedException {
 
         String opcao,id;
@@ -76,6 +162,24 @@ public class MenuAdminUC {
                     // Registro de novas UCs;
                     addUC(listaUC, listaProf);
                     break;
+                case "3":
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+                    System.out.println("#...........Gestao.UC...........#");
+                    System.out.println("# Id da UC: ");
+                    id = in.next();
+                    /*
+                     * Verificamos se o input e um inteiro
+                     */
+                    if(!check.isInteger(id)){
+                        return;
+                    }
+                    if(!listaUC.checkID(Integer.parseInt(id))){
+                        return;
+                    }
+                    uc = listaUC.getUCById(Integer.parseInt(id));
+                    gestaoEquipaDocente(uc, listaProf);
+                    
+                    break;
                 case "4":
                     System.out.format("#..............Universidade.do.%sMinho%s..............#\n",Color.RED_BOLD,Color.RESET);
                     System.out.println("#....................Gestao.UC....................#");
@@ -86,11 +190,14 @@ public class MenuAdminUC {
                     in.nextLine();
                     break;
                 case "5":
-                System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
                     System.out.println("#...........Gestao.UC...........#");
                     System.out.println("#..........Eliminar.UC..........#");
                     System.out.println("# Id: ");
                     id = in.next();
+                    /*
+                     * Verificamos se o input e um inteiro
+                     */
                     if(!check.isInteger(id)){
                         return;
                     }
@@ -101,8 +208,8 @@ public class MenuAdminUC {
                     professor = uc.getRegente();
                     professor.setCargo("Normal");
 
-                    listaUC.removeUC(in.nextInt());
-                    Thread.sleep(800);
+                    listaUC.removeUC(Integer.parseInt(id));
+                    Thread.sleep(500);
                     break;
                 default:
                     System.err.println("ERROR Opcao Invalida #");
