@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import BackEnd.Curso;
 import BackEnd.Professor.Professor;
-import FrontEnd.Color;
 
 public class ListCurso {
     private ArrayList<Curso> lista;

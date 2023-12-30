@@ -2,7 +2,6 @@ package BackEnd.Listas;
 
 import java.util.ArrayList;
 
-import BackEnd.Curso;
 import BackEnd.UC;
 import BackEnd.Professor.Professor;
 import FrontEnd.Color;
