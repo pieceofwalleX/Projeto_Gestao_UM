@@ -5,7 +5,7 @@ import BackEnd.Listas.ListUC;
 import BackEnd.Professor.Professor;
 
 public class Curso {
-    private static int nextId = 0;
+    private static int nextId = 1;
     private int Id;
     private String designacao;
     private ListUC listaUC;
