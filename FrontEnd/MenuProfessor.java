@@ -130,7 +130,7 @@ public class MenuProfessor {
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.format("#..........Universidade.do.%sMinho%s..........#",Color.RED_BOLD,Color.RESET);
+            System.out.format("#..........Universidade.do.%sMinho%s..........#\n",Color.RED_BOLD,Color.RESET);
             System.out.format("#......Professor.%s..[%s].......#\n",p.getNome(),p.getCargoString());
             System.out.println("#                                         #");
             System.out.println("#1. Criar Sumario                         #");

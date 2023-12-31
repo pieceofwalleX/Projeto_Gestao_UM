@@ -1,0 +1,25 @@
+MenuAdminProfessor
+	Completo
+MenuAdminCurso
+	Completo
+MenuAdminUC
+	Editar Informacoes
+MenuAdminListar
+	Em Falta
+
+MenuProfessor
+	Bug - > Quando venho do Menu Admin para o Pricipal e depois para o MenuProfessor
+		Tenho erro de input invalido
+		Deve bastar limpar o Buffer
+	Normal
+		Criar Sumarios(Dar fix)
+	Regente
+		Adicionar Alunos ao curso
+		Ver Assiduidade dos Aluno
+	Diretor
+		Alterar o nome do Curso(Ctrl c , Ctrl V)
+		Listar Professores e Alunos
+
+		
+	
+	

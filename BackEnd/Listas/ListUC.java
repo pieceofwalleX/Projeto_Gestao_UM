@@ -29,15 +29,49 @@ public class ListUC{
         }
         return elementos;
     }
-    public void listarUCSimples(){
-        int i = 0;
-        for(UC u: lista){
-            System.out.println("\t");
-            System.out.println(Color.PURPLE + i + Color.RESET + ". "+ u.getDesignacao() + "\t");
-            if(i % 5 == 0){
-                System.out.println("\n\t");
+    public int listarUCInCurso(ListUC listaCurso,boolean print){
+        int elementos = 0;
+        Professor regente = null;
+        for(UC uc:lista){
+            if(listaCurso.checkID(uc.getId())){
+                regente = uc.getRegente();
+                if(print == true) {
+                    System.out.format("# ID: %d Designacao: %s Regente: %s\t\t  #\n", uc.getId(), uc.getDesignacao(), regente == null ? "Sem Regente" : regente.getNome());
+                    System.out.println("#.................................................#");
+                }else{                     
+                    elementos++;
+                }
             }
-            i++;
+        }
+        return elementos;
+    }
+    public void listarUCSimples(ListUC listaCurso,boolean check){
+        int i = 1;
+        ListUC tempList = listaCurso;
+            /*
+             * Caso seja para verificar se existem UCs na lista de Curso (boolean check)
+             * E caso a UC(u) tenha o id de uma UC na ListaCurso entao nao mostrar
+             *                  Adicionar                                    Remover
+             */
+        if(!check){
+            for(UC u:lista){
+                if(tempList.checkID(u.getId())){
+                    continue;
+                }
+                System.out.print(Color.PURPLE + u.getId() + Color.RESET + ". "+ u.getDesignacao() + "\t");
+                if(i % 5 == 0){
+                    System.out.println("\n");
+                }
+                i++;
+            }
+        }else{
+            for(UC u: tempList.getLista()){
+                System.out.print(Color.PURPLE + i + Color.RESET + ". "+ u.getDesignacao() + "\t");
+                if(i % 5 == 0){
+                    System.out.println("\n");
+                }
+                i++;
+            }
         }
     }
     public boolean checkID(int id){
@@ -74,7 +108,6 @@ public class ListUC{
         UC uc = getUCById(id);
         if(lista.size() == 1){
             uc.setNextId(1);
-            System.out.println(uc.getNextId());
         }
         lista.remove(id - 1); //id - 1 , porque os ids das UCs comecam no 1 e nao no 0 ao contrario dos index
         for (int i = id - 1; i < lista.size(); i++) {
@@ -89,6 +122,10 @@ public class ListUC{
         }
         uc.setNextId(lista.size() + 1);
     }
+    public void removeUCFromCurso(int id) throws InterruptedException{
+        lista.remove(id - 1);
+    }
+
 
     public ArrayList<UC> getLista() {
         return lista;

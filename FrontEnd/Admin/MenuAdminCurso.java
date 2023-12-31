@@ -3,6 +3,7 @@ package FrontEnd.Admin;
 import java.util.Scanner;
 
 import BackEnd.Curso;
+import BackEnd.UC;
 import BackEnd.Listas.ListAluno;
 import BackEnd.Listas.ListCurso;
 import BackEnd.Listas.ListProfessore;
@@ -34,6 +35,7 @@ public class MenuAdminCurso {
          */
         if (!listaProf.checkNumMec(profNum)) {
             System.err.println("ERROR Falha ao encontrar professor");
+            curso.setNextId(curso.getId());
             Thread.sleep(400);
             return;
         }
@@ -42,6 +44,7 @@ public class MenuAdminCurso {
          */
         if (listaProf.isDiretor(profNum) || listaProf.isRegente(profNum)) {
             System.err.println("ERROR Professor ja e Diretor de Curso");
+            curso.setNextId(curso.getId());
             Thread.sleep(400);
             return;
         }
@@ -54,6 +57,7 @@ public class MenuAdminCurso {
             prof.setCargo("Diretor");
         } catch (Exception e) {
             System.err.println("#ERROR Falha ao trocar o cargo");
+            curso.setNextId(curso.getId());
             Thread.sleep(400);
         }
         /*
@@ -63,6 +67,7 @@ public class MenuAdminCurso {
             curso.setDiretor(prof);
         } catch (Exception e) {
             System.err.println("#ERROR Falha ao trocar o cargo");
+            curso.setNextId(curso.getId());
             Thread.sleep(400);
         }
 
@@ -79,6 +84,7 @@ public class MenuAdminCurso {
             throws InterruptedException {
         String opcao,input = null;
         Curso c = new Curso();
+        UC u = new UC();
         Professor p = new Professor();
         c = listaCurso.getCursoById(id);
         do {
@@ -111,6 +117,9 @@ public class MenuAdminCurso {
                     System.out.println(Color.GREEN_BOLD + "# Nome do Curso trocado com Sucesso" + Color.RESET);
                     break;
                 case "2":
+                /*
+                 * Trocar Diretor
+                 */
                     System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#.........Gestao..Curso.........#");
                     System.out.println("# ID Novo Diretor: ");
@@ -147,6 +156,9 @@ public class MenuAdminCurso {
 
                     break;
                 case "3":
+                /*
+                 * Adicionar UC
+                 */
                     System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#.........Gestao..Curso.........#");
                     /*
@@ -159,15 +171,27 @@ public class MenuAdminCurso {
                         in.nextLine();
                         break;
                     }
-                    listaUC.listarUCSimples();
-                    System.out.println("# ID: ");
+                    /*
+                     * Listar as UCs que ainda nao estao na Lista de UCs do Curso
+                     */
+                    listaUC.listarUCSimples(c.getListaUC(),false);
+                    System.out.println("\n# ID: ");
                     input = in.next();
                     if(!check.isInteger(input)){
                         return;
                     }
-                    c.addUC(listaUC.getUCById(id));
+                    u = listaUC.getUCById(Integer.parseInt(input));
+                    if(c.ucInList(Integer.parseInt(input))){
+                        System.err.println(Color.RED + "ERROR Opcao Invalida #" + Color.RESET);
+                        Thread.sleep(450);
+                        break;
+                    }
+                    c.addUC(u);
                     break;
                 case "4":
+                /*
+                 * Remover UC
+                 */
                     System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#.........Gestao..Curso.........#");
                     /*
@@ -180,8 +204,8 @@ public class MenuAdminCurso {
                         in.nextLine();
                         break;
                     }
-                    listaUC.listarUCSimples();
-                    System.out.println("# ID: ");
+                    listaUC.listarUCSimples(c.getListaUC(),true);
+                    System.out.println("\n# ID: ");
                     input = in.next();
                     if(!check.isInteger(input)){
                         return;
@@ -189,6 +213,9 @@ public class MenuAdminCurso {
                     c.removeUC(Integer.parseInt(input));
                     break;
                 case "5":
+                /*
+                 * Listar UCs no curso
+                 */
                     System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#.........Gestao..Curso.........#");
                     c.listarUC();

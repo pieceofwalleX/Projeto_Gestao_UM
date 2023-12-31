@@ -3,6 +3,7 @@ package BackEnd;
 import BackEnd.Listas.ListAluno;
 import BackEnd.Listas.ListUC;
 import BackEnd.Professor.Professor;
+import FrontEnd.Color;
 
 public class Curso {
     private static int nextId = 1;
@@ -74,16 +75,37 @@ public class Curso {
         listaAluno.adicionar(a);
     }
     public void removeUC(int id) throws InterruptedException{
-        listaUC.removeUC(id);
+        listaUC.removeUCFromCurso(id);
     }
     public void removeAluno(String id){
         listaAluno.remove(id);
     }
     public void listarUC(){
-        listaUC.listarUC(true);
+        listaUC.listarUCInCurso(listaUC,true);
+    }
+    public ListUC getListaUC(){
+        return listaUC;
     }
     public void listarSimplesUC(){
-        listaUC.listarUCSimples();
+        int i = 0;
+        ListUC tempLista = listaUC;
+        for(UC u: tempLista.getLista()){
+            System.out.println("\t");
+            System.out.println(Color.PURPLE + u.getId() + Color.RESET + ". "+ u.getDesignacao() + "\t");
+            if(i % 5 == 0){
+                System.out.println("\n\t");
+            }
+            i++;
+        }
+    }
+    public boolean ucInList(int id){
+        ListUC tempLista = listaUC;
+        for(UC u : tempLista.getLista()){
+            if(u.getId() == id){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

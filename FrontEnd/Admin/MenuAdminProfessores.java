@@ -3,8 +3,6 @@ package FrontEnd.Admin;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import BackEnd.Curso;
@@ -26,7 +24,7 @@ public class MenuAdminProfessores {
 
         in.nextLine(); // Limpar o buffer
 
-        System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+        System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
         System.out.println("#......Gestao..Professores.....#");
 
         System.out.println("# Numero do Professor: ");
@@ -68,7 +66,8 @@ public class MenuAdminProfessores {
         Thread.sleep(450);
     }
 
-    public static void removeProf(ListProfessore listaProf, ListUC listaUC, ListCurso listaCurso) throws InterruptedException {
+    public static void removeProf(ListProfessore listaProf, ListUC listaUC, ListCurso listaCurso)
+            throws InterruptedException {
         String id;
         Curso c = new Curso();
         UC uc = new UC();
@@ -81,7 +80,7 @@ public class MenuAdminProfessores {
         StringBuilder animationCargo = new StringBuilder("Removendo cargo");
         StringBuilder animationNormal = new StringBuilder("Removendo");
 
-        System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+        System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
         in.nextLine();
         System.out.println("#......Gestao..Professores......#");
         System.out.println("#......Eliminar.Professore......#");
@@ -116,10 +115,10 @@ public class MenuAdminProfessores {
         /*
          * Caso seja diretor remover o Cargo
          */
-        if(listaProf.isDiretor(id)) {
+        if (listaProf.isDiretor(id)) {
             c = listaCurso.getCursoByDiretor(id);
             c.setDiretor(null);
-            //Animacao
+            // Animacao
             for (int r = 0; r < 4; r++) {
                 try {
                     Thread.sleep(300);
@@ -159,14 +158,15 @@ public class MenuAdminProfessores {
         }
 
     }
-    public static void editarDados(Professor p,ListProfessore listaProf,ListUC listaUC) throws InterruptedException{
-        String opcao,id;
+
+    public static void editarDados(Professor p, ListProfessore listaProf, ListUC listaUC) throws InterruptedException {
+        String opcao, input;
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+            System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
             System.out.println("#......Gestao..Professores......#");
-            System.out.format("#........Editar...%s........#\n",p.getNome());
+            System.out.format("#........Editar...%s........#\n", p.getNome());
             System.out.println("#                               #");
             System.out.println("#                               #");
             System.out.println("#1. Editar Num                  #");
@@ -182,36 +182,58 @@ public class MenuAdminProfessores {
                 case "0":
                     break;
                 case "1":
-                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#......Gestao..Professores......#");
                     System.out.println("# Novo Id: ");
-                    id = in.next();
+                    input = in.next();
                     /*
                      * Verificamos se o input e um inteiro
                      */
-                    if(!check.isInteger(id)){
+                    if (!check.isInteger(input)) {
                         return;
                     }
                     /*
                      * Verificar se o ID ja esta associado
                      */
-                    if(listaProf.checkNumMec(id)){
+                    if (listaProf.checkNumMec(input)) {
                         return;
                     }
                     /*
                      * Se for valido , alterar o ID ao professor e
-                     * Alterar o ID das UCs/Curso associadas(o) 
+                     * Alterar o ID das UCs/Curso associadas(o)
                      */
-                    if(p.setNumMec(id)){
+                    if (p.setNumMec(input)) {
                         System.out.println("# Numero alterado com sucesso");
                         Thread.sleep(400);
-                    }                
+                    }
                     break;
                 case "2":
+                    in.nextLine();
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
+                    System.out.println("#......Gestao..Professores......#");
+                    System.out.println("# Novo Nome: ");
+                    input = in.nextLine();
+                    p.setNome(input);
                     break;
                 case "3":
-                    break;
-                case "4":
+                    in.nextLine();
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
+                    System.out.println("#......Gestao..Professores......#");
+                    System.out.println("# Nova Data: ");
+                    input = in.nextLine();
+                    /*
+                     * Transformar input em LocalDate
+                     */
+                    LocalDate dataInicio = LocalDate.parse(input, DateTimeFormatter.ofPattern("ddMMyyyy"));
+                    /*
+                     * Verificar se a data e valida
+                     */
+                    if (!p.setDataInicio(dataInicio)) {
+                        System.err.println(Color.RED + "#ERROR Data Invalida" + Color.RESET);
+                        Thread.sleep(450);
+                        return;
+                    }
+
                     break;
                 default:
                     System.err.println("ERROR Opcao Invalida #");
@@ -220,14 +242,15 @@ public class MenuAdminProfessores {
         } while (!opcao.equals("0"));
     }
 
-    public static void menu(ListProfessore listaProf, ListUC listaUC,ListCurso listaCurso) throws InterruptedException {
+    public static void menu(ListProfessore listaProf, ListUC listaUC, ListCurso listaCurso)
+            throws InterruptedException {
 
-        String opcao,id;
+        String opcao, id;
         Professor professor = new Professor();
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+            System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
             System.out.println("#......Gestao..Professores......#");
             System.out.println("#                               #");
             System.out.println("#1. Resgistrar Professor        #");
@@ -247,34 +270,33 @@ public class MenuAdminProfessores {
                     addProf(listaProf);
                     break;
                 case "2":
-                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#......Gestao..Professores......#");
                     System.out.println("# Id Professor: ");
                     id = in.next();
                     /*
                      * Verificamos se o input e um inteiro
                      */
-                    if(!check.isInteger(id)){
+                    if (!check.isInteger(id)) {
                         return;
                     }
-                    if(!listaProf.checkNumMec(id)){
+                    if (!listaProf.checkNumMec(id)) {
                         return;
                     }
                     professor = listaProf.getProfByNum(id);
                     editarDados(professor, listaProf, listaUC);
-                    
+
                     break;
                 case "3":
                     System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#......Gestao..Professores......#");
-                    listaProf.listarProf(true); // O boolean server para listar caso seja true, e apenas contar caso
-                                                // seja false
+                    listaProf.listarProf(true); // O boolean server para listar caso seja true, e apenas contar caso seja false
                     System.out.println("Pressione ENTER para continuar ...");
                     in.nextLine();
                     in.nextLine();
                     break;
                 case "4":
-                    removeProf(listaProf, listaUC,listaCurso);
+                    removeProf(listaProf, listaUC, listaCurso);
                     break;
                 default:
                     System.err.println("ERROR Opcao Invalida #");
