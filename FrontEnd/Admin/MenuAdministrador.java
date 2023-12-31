@@ -4,14 +4,14 @@ import BackEnd.Listas.*;
 import FrontEnd.Color;
 
 public class MenuAdministrador {
-    private static int authPin = 1234;
+    private static String authPin = "1234";
     static Scanner in = new Scanner(System.in);
-    public static void Auth(ListUC listaUC,ListProfessore listaProf,ListAluno listAluno,ListCurso listaCurso) throws InterruptedException{
+    public static void Auth(ListUC listaUC,ListProfessor listaProf,ListAluno listAluno,ListCurso listaCurso) throws InterruptedException{
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
         System.out.println("#.Codigo de Autenticacao >");
-        if  (in.nextInt() != authPin){
+        if(!in.next().equals(authPin)){
             System.out.println(Color.RED + "#Error Codigo Invalido #" + Color.RESET);
             Thread.sleep(1000);
             return;
@@ -23,7 +23,7 @@ public class MenuAdministrador {
         System.out.println("#...............................#");
     }
 
-    public static void menu(ListUC listaUC,ListProfessore listaProf,ListAluno listaAluno, ListCurso listaCurso){
+    public static void menu(ListUC listaUC,ListProfessor listaProf,ListAluno listaAluno, ListCurso listaCurso){
         String opcao;
         try{
         do{
@@ -35,7 +35,8 @@ public class MenuAdministrador {
             System.out.println("#1. Gerir Professor             #");
             System.out.println("#2. Gerir Curso                 #");
             System.out.println("#3. Gerir UCs                   #");
-            System.out.println("#4. Listar Informacao           #");
+            System.out.println("#4. Listar Alunos               #");
+            System.out.println("#                               #");
             System.out.println("#                               #");
             System.out.println("#0. Sair                        #");
             System.out.println("#...............................#");
@@ -56,9 +57,9 @@ public class MenuAdministrador {
                     //Menu Gestao de Curso/UC
                     break;
                 case "4":
-                    //Verificar que informacao o usuario quer listar
-                    //Menu Listagem
-                    break;
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
+                    System.out.println("#.........Administracao.........#");
+                    listaAluno.listarSimples();
                 default:
                     System.err.println("#ERROR Opcao Invalida #");
                     break;

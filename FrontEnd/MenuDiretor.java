@@ -5,14 +5,14 @@ import java.util.Scanner;
 import BackEnd.Curso;
 import BackEnd.Listas.ListAluno;
 import BackEnd.Listas.ListCurso;
-import BackEnd.Listas.ListProfessore;
+import BackEnd.Listas.ListProfessor;
 import BackEnd.Listas.ListUC;
 import BackEnd.Professor.Professor;
 
 public class MenuDiretor {
     static final Scanner in = new Scanner(System.in);
     
-     public static void menu(ListCurso listaCurso, ListUC listaUC, ListProfessore listaProf, ListAluno listaAluno,Professor p)
+     public static void menu(ListCurso listaCurso, ListUC listaUC, ListProfessor listaProf, ListAluno listaAluno,Professor p)
             throws InterruptedException {
         String opcao;
         Curso c = new Curso();

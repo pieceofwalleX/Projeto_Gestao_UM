@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 import BackEnd.Aluno;
 import BackEnd.Curso;
+import BackEnd.Listas.HashSumario;
 import BackEnd.Listas.ListAluno;
 import BackEnd.Listas.ListCurso;
-import BackEnd.Listas.ListProfessore;
+import BackEnd.Listas.ListProfessor;
 import BackEnd.Listas.ListUC;
 import BackEnd.Professor.Professor;
 
@@ -14,8 +15,9 @@ public class MenuRegente {
         static final Scanner in = new Scanner(System.in);
         static final Verification check = new Verification();
 
-    public static void adicionarAluno(ListCurso listaCurso,ListAluno listaAluno,Professor p,Curso curso) throws InterruptedException{
+    public static void adicionarAluno(ListCurso listaCurso,ListAluno listaAluno,Professor p) throws InterruptedException{
         Aluno aluno = new Aluno();
+        Curso curso = new Curso();
         String input;
         System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
         System.out.println("#.........Gestao..Curso.........#");
@@ -24,6 +26,7 @@ public class MenuRegente {
 
         if(!check.isInteger(input)){
             System.err.println("#ERROR Caracter Invalido");
+            aluno.setNumMec(input);
             Thread.sleep(400);
             return;
         }
@@ -50,8 +53,11 @@ public class MenuRegente {
             return;
         }
 
+        curso = listaCurso.getCursoById(Integer.parseInt(input));
         aluno.setCurso(listaCurso.getCursoById(Integer.parseInt(input)));
-
+        
+        ListAluno listaAlunoCurso = curso.getListaAluno();
+        listaAlunoCurso.adicionar(aluno);
         listaAluno.adicionar(aluno);
 
         System.out.println("#...............................#");
@@ -61,17 +67,15 @@ public class MenuRegente {
         Thread.sleep(550);
     }
 
-     public static void gerirAluno(ListCurso listaCurso,Professor p,Curso curso) throws InterruptedException{
+     public static void gerirAluno(HashSumario listaSumarios, ListCurso listaCurso,ListAluno listaAluno,Professor p) throws InterruptedException{
         String opcao,input;
         do {
-            ListAluno listaAluno = curso.getListaAluno();
-
             System.out.print("\033[H\033[2J");
             System.out.flush();
             System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
             System.out.println("#.........Gestao..Curso.........#");
             System.out.println("#                               #");
-            System.out.format("# Regente: %s    %s[%s]%s\t \t#",p.getNome(),Color.PURPLE,curso.getDesignacao(),Color.RESET);
+            System.out.format("# Regente: %s                       #",p.getNome());
             System.out.println("\n#                               #");
             System.out.println("#1. Adiconar Aluno              #");
             System.out.println("#2. Remover Aluno               #");
@@ -85,7 +89,7 @@ public class MenuRegente {
                     break;
                 case "1":
                     // Registra novo aluno
-                    adicionarAluno(listaCurso,listaAluno, p,curso);
+                    adicionarAluno(listaCurso,listaAluno, p);
                     break;
                 case "2":
                     in.nextLine();
@@ -93,7 +97,6 @@ public class MenuRegente {
                     System.out.println("#.........Gestao..Curso.........#");
                     System.out.println("# ID: ");
                     input = in.next();
-
                     if(!check.isInteger(input)){
                         System.err.println("#ERROR Caracter Invalido");
                         Thread.sleep(400);
@@ -104,7 +107,7 @@ public class MenuRegente {
                         Thread.sleep(400);
                         return;
                     }
-                    listaAluno.remove(input);
+                    listaSumarios.removeAluno(input);
                     break;
                 default:
                     System.err.println("ERROR Opcao Invalida #");
@@ -113,32 +116,17 @@ public class MenuRegente {
         } while (!opcao.equals("0"));
      }
     
-     public static void menu(ListCurso listaCurso, ListUC listaUC, ListProfessore listaProf,Professor p) throws InterruptedException {
+     public static void menu(HashSumario listaSumarios,ListCurso listaCurso, ListUC listaUC,ListAluno listaAluno ,ListProfessor listaProf,Professor p) throws InterruptedException {
         String opcao,input;
         Curso c = new Curso();
         do {
-
-            System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
-            System.out.println("#.........Gestao..Curso.........#");
-            System.out.println("# ID do Curso: ");
-            input = in.next();
-
-            if(!check.isInteger(input)){
-                return;
-            }
-            if(!listaCurso.checkCursoById(input)){
-                return;
-            }
-
-            c = listaCurso.getCursoById(Integer.parseInt(input));
-
 
             System.out.print("\033[H\033[2J");
             System.out.flush();
             System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
             System.out.println("#.........Gestao..Curso.........#");
             System.out.println("#                               #");
-            System.out.format("# Regente: %s    %s[%s]%s\t \t#",p.getNome(),Color.PURPLE,c.getDesignacao(),Color.RESET);
+            System.out.format("# Regente: %s                    #",p.getNome());
             System.out.println("\n#                               #");
             System.out.println("#1. Gerir Alunos                #");
             System.out.println("#2. Consultar Assiduidade       #");
@@ -152,9 +140,48 @@ public class MenuRegente {
                 case "0":
                     break;
                 case "1":
-                    // Registro de novas UCs;
-                    gerirAluno(listaCurso, p,c);
+                    gerirAluno(listaSumarios,listaCurso,listaAluno, p);
                     break;
+                case "2":
+                    //Ver assiduidade
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
+                    System.out.println("#.........Gestao..Curso.........#");
+                    System.out.println("# ID do Curso: ");
+                    input = in.next();
+
+                    if(!check.isInteger(input)){
+                        return;
+                    }
+
+                    if(!listaCurso.checkCursoById(input)){
+                        return;
+                    }
+
+                    c = listaCurso.getCursoById(Integer.parseInt(input));
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
+                    System.out.println("#.........Gestao..Curso.........#");
+                    System.out.println("# ID do Aluno: ");
+                    input = in.next();
+
+                    if(!check.isInteger(input)){
+                        return;
+                    }
+
+                    if(!c.getListaAluno().inLista(input)){
+                        System.err.println("#ERROR Aluno nao existe #");
+                        Thread.sleep(450);
+                        return;
+                    }
+
+                    Aluno aluno = c.getListaAluno().getAlunoById(input);
+
+                    System.out.println("# Faltas: " + aluno.getFaltas());
+                    System.out.println("#...............................#");
+                    System.out.println("Pressione ENTER para continuar ...");
+                    in.nextLine();
+                    in.nextLine();
+                break;
+                    
                 default:
                     System.err.println("ERROR Opcao Invalida #");
                     break;

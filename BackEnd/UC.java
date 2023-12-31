@@ -1,19 +1,21 @@
 package BackEnd;
 
-import BackEnd.Listas.ListProfessore;
+import java.io.Serializable;
+
+import BackEnd.Listas.ListProfessor;
 import BackEnd.Professor.Professor;
 
-public class UC {
+public class UC implements Serializable {
     private static int nextId = 1;
     private int id;
     private String designacao;
-    private ListProfessore listaDocente;
+    private ListProfessor listaDocente;
     private Professor regente;
 
     public UC() {
         designacao = "";
         regente = null;
-        listaDocente = new ListProfessore();
+        listaDocente = new ListProfessor();
     }
     /*
      * Este constructor e uma maneira de resolver o bug em que ao criar uma UC auxiliar
@@ -23,11 +25,11 @@ public class UC {
         designacao = "";
         id = nextId;
         regente = null;
-        listaDocente = new ListProfessore();
+        listaDocente = new ListProfessor();
         nextId++;
     }
 
-    public UC(String designacao, Professor regente, ListProfessore listaDocente) {
+    public UC(String designacao, Professor regente, ListProfessor listaDocente) {
         this.designacao = designacao;
         this.regente = regente;
         this.listaDocente = listaDocente;
@@ -84,8 +86,14 @@ public class UC {
     public void listarEquipaDocente() {
         listaDocente.listarProfSimples(true);
     }
+    public boolean inListaDocente(String id){
+        if(listaDocente.checkNumMec(id)){
+            return true;
+        }
+        return false;
+    }
 
-    public ListProfessore getListDocente(){
+    public ListProfessor getListDocente(){
         return listaDocente;
     }
 }

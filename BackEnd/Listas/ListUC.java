@@ -1,12 +1,18 @@
 package BackEnd.Listas;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import BackEnd.UC;
 import BackEnd.Professor.Professor;
 import FrontEnd.Color;
 
-public class ListUC{
+public class ListUC implements Serializable {
     private ArrayList<UC> lista;
 
     public ListUC(){
@@ -131,4 +137,20 @@ public class ListUC{
         return lista;
     }
 
+    public void load(InputStream input) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(input)) {
+            while (input.available() > 0) {
+                UC uc = (UC) ois.readObject();
+                adicionar(uc);
+            }
+        }
+    }
+
+    public void save(OutputStream output) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(output)) {
+            for (UC uc : lista) {
+                oos.writeObject(uc);
+            }
+        }
+    }
 }

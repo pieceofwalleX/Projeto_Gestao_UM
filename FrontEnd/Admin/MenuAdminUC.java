@@ -12,7 +12,7 @@ public class MenuAdminUC {
     static final Scanner in = new Scanner(System.in);
     static final Verification check = new Verification();
 
-    public static void addUC(ListUC listaUC, ListProfessore listaProf) throws InterruptedException {
+    public static void addUC(ListUC listaUC, ListProfessor listaProf) throws InterruptedException {
         in.nextLine();
         String profNum;
         UC uc = new UC(true);
@@ -60,7 +60,7 @@ public class MenuAdminUC {
         listaUC.adicionar(uc);
     }
 
-    public static void gestaoEquipaDocente(UC uc, ListProfessore listaProf) throws InterruptedException{
+    public static void gestaoEquipaDocente(UC uc, ListProfessor listaProf) throws InterruptedException{
         String opcao,id;
         Professor professor = new Professor();
         do {
@@ -91,13 +91,16 @@ public class MenuAdminUC {
                      * Verificamos se o input e um inteiro
                      */
                     if(!check.isInteger(id)){
-                        return;
+                        break;
                     }
                     /*
                      * Verificamos se o professor existe
                      */
                     if(!listaProf.checkNumMec(id)){
-                        return;
+                        break;
+                    }
+                    if(uc.inListaDocente(id)){
+                        break;
                     }
                     /*
                      * Caso exista atualizamos o servico docente do professor e
@@ -146,7 +149,7 @@ public class MenuAdminUC {
         } while (!opcao.equals("0"));
     }
 
-    public static void gestaoUC(ListUC listaUC, ListProfessore listaProf) throws InterruptedException {
+    public static void gestaoUC(ListUC listaUC, ListProfessor listaProf) throws InterruptedException {
 
         String opcao,id;
         UC uc = new UC();
@@ -157,7 +160,7 @@ public class MenuAdminUC {
             System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
             System.out.println("#...........Gestao.UC...........#");
             System.out.println("#                               #");
-            System.out.println("#1. Resgistrar UC               #");
+            System.out.println("#1. Registrar UC               #");
             System.out.println("#2. Editar Informaceos UC       #");
             System.out.println("#3. Equipa docente              #");
             System.out.println("#4. Listar UCs                  #");

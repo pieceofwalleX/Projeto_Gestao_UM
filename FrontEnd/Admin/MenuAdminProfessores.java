@@ -8,7 +8,7 @@ import java.util.Scanner;
 import BackEnd.Curso;
 import BackEnd.UC;
 import BackEnd.Listas.ListCurso;
-import BackEnd.Listas.ListProfessore;
+import BackEnd.Listas.ListProfessor;
 import BackEnd.Listas.ListUC;
 import BackEnd.Professor.Professor;
 import FrontEnd.Color;
@@ -18,7 +18,7 @@ public class MenuAdminProfessores {
     static final Scanner in = new Scanner(System.in);
     static final Verification check = new Verification();
 
-    public static void addProf(ListProfessore listaProfessore) throws InterruptedException {
+    public static void addProf(ListProfessor listaProfessore) throws InterruptedException {
         String data;
         Professor u = new Professor();
 
@@ -66,7 +66,7 @@ public class MenuAdminProfessores {
         Thread.sleep(450);
     }
 
-    public static void removeProf(ListProfessore listaProf, ListUC listaUC, ListCurso listaCurso)
+    public static void removeProf(ListProfessor listaProf, ListUC listaUC, ListCurso listaCurso)
             throws InterruptedException {
         String id;
         Curso c = new Curso();
@@ -159,7 +159,7 @@ public class MenuAdminProfessores {
 
     }
 
-    public static void editarDados(Professor p, ListProfessore listaProf, ListUC listaUC) throws InterruptedException {
+    public static void editarDados(Professor p, ListProfessor listaProf, ListUC listaUC) throws InterruptedException {
         String opcao, input;
         do {
             System.out.print("\033[H\033[2J");
@@ -242,7 +242,7 @@ public class MenuAdminProfessores {
         } while (!opcao.equals("0"));
     }
 
-    public static void menu(ListProfessore listaProf, ListUC listaUC, ListCurso listaCurso)
+    public static void menu(ListProfessor listaProf, ListUC listaUC, ListCurso listaCurso)
             throws InterruptedException {
 
         String opcao, id;
@@ -253,7 +253,7 @@ public class MenuAdminProfessores {
             System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
             System.out.println("#......Gestao..Professores......#");
             System.out.println("#                               #");
-            System.out.println("#1. Resgistrar Professor        #");
+            System.out.println("#1. Registrar Professor        #");
             System.out.println("#2. Editar Dados Professor      #");
             System.out.println("#3. Listar Professores          #");
             System.out.println("#4. Eliminar Professor          #");

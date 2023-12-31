@@ -1,8 +1,10 @@
 package BackEnd;
 
+import java.io.Serializable;
+
 import BackEnd.Listas.ListAluno;
 
-public class Content {
+public class Content implements Serializable{
     private ListAluno presencas;
     private String descricao;
 
@@ -23,7 +25,7 @@ public class Content {
     public ListAluno getPresencas(){
         return presencas;
     }
-    public String Descricao(){
+    public String getDescricao(){
         return descricao;
     }
 

@@ -7,8 +7,9 @@ import BackEnd.*;
 
 public class MenuProfessor {
     static final Scanner in = new Scanner(System.in);
+    static final Verification check = new Verification();
 
-    public static void authProf(HashSumario listaSumarios, ListUC listaUC, ListProfessore listaProf,ListCurso listaCurso,ListAluno listaAluno)
+    public static void authProf(HashSumario listaSumarios, ListUC listaUC, ListProfessor listaProf,ListCurso listaCurso,ListAluno listaAluno)
             throws InterruptedException {
 
         String id;
@@ -32,13 +33,14 @@ public class MenuProfessor {
         System.out.println("#...............................#");
     }
 
-    public static void newSumario(HashSumario listaSumarios, ListUC listaUC, ListProfessore listaProf, String id)
-            throws InterruptedException {
+    public static void newSumario(HashSumario listaSumarios, ListUC listaUC,Curso curso,ListProfessor listaProf, String id) throws InterruptedException {
 
         Sumario s = new Sumario();
-        Content content = new Content(); // Por Fazer
+        Content content = new Content();
         int idUC, tipoAula;
         boolean inUCList;
+        String input;
+
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
@@ -46,8 +48,9 @@ public class MenuProfessor {
         System.out.println("#                               #");
         System.out.println("#UC: ");
         idUC = in.nextInt();
-        inUCList = listaUC.checkID(idUC);
+        inUCList = curso.getListaUC().checkID(idUC);
         in.nextLine();
+
         if (inUCList) {
             s.setIdDisciplina(idUC);
             s.setIdProfessor(id);
@@ -67,9 +70,48 @@ public class MenuProfessor {
              * Verificacao:
              *  Ver se o Curso contem a UC e Se o Professor pertence a equipa Docente
              */
+            ListAluno presencas = new ListAluno(curso.getListaAluno());// Criar uma copia da lista principal
+            System.out.println("# Selecione os Alunos em Falta | Digite \"Continuar\" para Avancar");
+            presencas.listarSimples();
+            do{
+            System.out.println("# ---");
+            input = in.next();
+            
+            if(input.toLowerCase().equals("continuar")){
+                continue;
+            }
+
+            if(check.isInteger(input)){
+                /*
+                 * Verificar se o numero existe na lista
+                 */
+                if(!presencas.inLista(input)){
+                    return;
+                }
+                Aluno aluno = presencas.getAlunoById(input);
+                /*
+                 * Adicionar falta ao Aluno
+                 */
+                aluno.addFalta();
+                /*
+                 * Remover da Lista de Presencas
+                 */
+                presencas.remove(input);
+            }
+
+            /*
+             * Verificar se o usario digitou Continuar 
+             * Transformamos o input em lowerCase para dar mais liberdade ao usario
+             * De escrever "Continuar" como desejar
+             */
+            }while(!input.toLowerCase().equals("continuar"));
+            content.setPresencas(presencas);
+            in.nextLine();
             System.out.println("# Descricao: ");
-            s.setDescricao(in.nextLine());
+            content.setDescricao(in.nextLine());
             listaSumarios.add(s, content);
+
+
             System.out.println("#...............................#");
             System.out.println("# Resgistrado Sumario           #");
             listaSumarios.get(s);
@@ -83,8 +125,9 @@ public class MenuProfessor {
         }
     }
 
-    public static void printSumarios(HashSumario listaSumarios,ListUC listaUC,ListProfessore listaProf,String id) {
-        int idUC, tipoAula;
+    public static void printSumarios(HashSumario listaSumarios,ListUC listaUC,ListProfessor listaProf,String id) throws InterruptedException {
+        int idUC;
+        String input,tipoAula = "";
         Sumario s = new Sumario();
         Professor p = new Professor();
         p = listaProf.getProfByNum(id);
@@ -101,11 +144,29 @@ public class MenuProfessor {
         }
         System.out.println("#..............Tipo..Aula..............");
         System.out.println("# 1.Teorica 2.Teorico-Pratica 3.Pratica");
-        tipoAula = in.nextInt();
-        if (!s.verifyTipoAula(tipoAula)) {
+        input = in.next();
+
+        if(!check.isInteger(input)){
+            return;
+        }
+
+        if (!s.verifyTipoAula(Integer.parseInt(input))) {
             System.err.println("#ERROR Tipo de aula Invalido");
             return;
         }
+        
+        switch (input) {
+            case "1":
+                tipoAula = "T";
+                break;
+            case "2":
+                tipoAula = "TP";
+                break;
+            case "3":
+                tipoAula = "P";
+                break;
+        }
+
         listaSumarios.listarSumarios(s, tipoAula,p.getNome(),true);
         System.out.println("#...............................#");
         System.out.println("Pressione ENTER para continuar ...");
@@ -115,9 +176,9 @@ public class MenuProfessor {
 
 
 
-    public static void menu(HashSumario listaSumarios, ListUC listaUC, ListProfessore listaProf,ListCurso listaCurso,ListAluno listaAluno, String id) throws InterruptedException {
+    public static void menu(HashSumario listaSumarios, ListUC listaUC, ListProfessor listaProf,ListCurso listaCurso,ListAluno listaAluno, String id) throws InterruptedException {
 
-        String opcao;
+        String opcao,input;
         Professor p = new Professor();
 
         try{
@@ -148,8 +209,21 @@ public class MenuProfessor {
                 case "0":
                     break;
                 case "1":
-                    // Menu Gestao de Projefores;
-                    newSumario(listaSumarios, listaUC, listaProf, id);
+                    /*
+                     * Obter o Curso em que estamos a criar o Sumario
+                     */
+                    in.nextLine();
+                    System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
+                    System.out.println("#.......Professor.Sumario.......#");
+                    System.out.println("# ID: ");
+                    input = in.next();
+
+                    if(!check.isInteger(input)){
+                        return;
+                    }
+                    Curso curso = listaCurso.getCursoById(Integer.parseInt(input));
+
+                    newSumario(listaSumarios, listaUC,curso,listaProf, id);
                     break;
                 case "2":
                     // Verificar se o usuario quer modificar uma UC ou um Curso
@@ -158,10 +232,10 @@ public class MenuProfessor {
                     break;
                 case "3":
                     if(p.getCargoString().equals("Regente")){                        
-                        MenuRegente.menu(listaCurso, listaUC, listaProf, p);
+                        MenuRegente.menu(listaSumarios,listaCurso, listaUC,listaAluno ,listaProf, p);
+                        break;
                     }else if(p.getCargoString().equals("Diretor")){
                         MenuDiretor.menu(listaCurso,listaUC,listaProf,listaAluno,p);
-                    }else{
                         break;
                     }
                     break;
@@ -169,7 +243,7 @@ public class MenuProfessor {
                     System.err.println("ERROR Opcao Invalida #");
                     break;
             }
-
+            in.nextLine();
         } while (!opcao.equals("0"));
     }
 }

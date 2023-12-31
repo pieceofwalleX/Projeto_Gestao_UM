@@ -1,11 +1,13 @@
 package BackEnd;
 
+import java.io.Serializable;
+
 import BackEnd.Listas.ListAluno;
 import BackEnd.Listas.ListUC;
 import BackEnd.Professor.Professor;
 import FrontEnd.Color;
 
-public class Curso {
+public class Curso implements Serializable {
     private static int nextId = 1;
     private int id;
     private String designacao;

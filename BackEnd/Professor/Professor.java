@@ -1,5 +1,8 @@
 package BackEnd.Professor;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -10,7 +13,7 @@ import BackEnd.Listas.ListUC;
 import FrontEnd.Color;
 import FrontEnd.Verification;
 
-public class Professor {
+public class Professor implements Serializable {
     final static Verification check = new Verification();
     private enum tipoProfessor {
         Normal,

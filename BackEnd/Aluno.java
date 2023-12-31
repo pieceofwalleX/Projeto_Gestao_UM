@@ -1,6 +1,8 @@
 package BackEnd;
 
-public class Aluno {
+import java.io.Serializable;
+
+public class Aluno implements Serializable{
     private static String nextNum = "1";
     private String nome;
     private String numMec; //Sera usado o sistema de IDs ou seja os alunos comecao no 1 e sempre que se registra um aluno sera aumentado +1 ao numMec;
@@ -26,6 +28,9 @@ public class Aluno {
     }
     public void setNumMec(String numMec){
         this.numMec = numMec;
+    }
+    public void setNextNum(String nextNum){
+        this.nextNum = nextNum;
     }
     public void setCurso(Curso curso){
         this.curso = curso;

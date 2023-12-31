@@ -6,7 +6,7 @@ import BackEnd.Curso;
 import BackEnd.UC;
 import BackEnd.Listas.ListAluno;
 import BackEnd.Listas.ListCurso;
-import BackEnd.Listas.ListProfessore;
+import BackEnd.Listas.ListProfessor;
 import BackEnd.Listas.ListUC;
 import BackEnd.Professor.Professor;
 import FrontEnd.Color;
@@ -18,7 +18,7 @@ public class MenuAdminCurso {
     /*
      * Adicionar um Curso
      */
-    public static void addCurso(ListUC listaUC, ListProfessore listaProf, ListAluno listaAluno, ListCurso listaCurso)
+    public static void addCurso(ListUC listaUC, ListProfessor listaProf, ListAluno listaAluno, ListCurso listaCurso)
             throws InterruptedException {
         in.nextLine();
         String profNum;
@@ -80,7 +80,7 @@ public class MenuAdminCurso {
     /*
      * Editar informacoes do curso
      */
-    public static void editCurso(ListCurso listaCurso, ListUC listaUC, ListProfessore listaProf, ListAluno listaAluno, int id)
+    public static void editCurso(ListCurso listaCurso, ListUC listaUC, ListProfessor listaProf, ListAluno listaAluno, int id)
             throws InterruptedException {
         String opcao,input = null;
         Curso c = new Curso();
@@ -230,7 +230,7 @@ public class MenuAdminCurso {
         } while (!opcao.equals("0"));
     }
 
-    public static void menu(ListCurso listaCurso, ListUC listaUC, ListProfessore listaProf, ListAluno listaAluno)
+    public static void menu(ListCurso listaCurso, ListUC listaUC, ListProfessor listaProf, ListAluno listaAluno)
             throws InterruptedException {
         String opcao,id = "";
         Curso c = new Curso();
@@ -243,7 +243,7 @@ public class MenuAdminCurso {
             System.out.println("#                               #");
             System.out.format("# Cursos: %d                     #\n", listaCurso.listarCursos(false));// Apresenta o numero de cursos
             System.out.println("#                               #");
-            System.out.println("#1. Resgistrar Curso            #");
+            System.out.println("#1. Registrar Curso            #");
             System.out.println("#2. Editar Informaceos Curso    #");
             System.out.println("#3. Listar Cursos               #");
             System.out.println("#4. Remover Curso               #");

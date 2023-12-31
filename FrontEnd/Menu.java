@@ -1,5 +1,6 @@
 package FrontEnd;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -8,19 +9,22 @@ import BackEnd.Curso;
 import BackEnd.Listas.*;
 import BackEnd.Professor.Professor;
 import FrontEnd.Admin.MenuAdministrador;
+import BackEnd.File;
 
 public class Menu {
 
     static final Scanner in = new Scanner(System.in);
 
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, ClassNotFoundException, IOException {
         // Inicializar as Listas
         ListUC listaUC = new ListUC();
-        ListProfessore listaProf = new ListProfessore();
+        ListProfessor listaProf = new ListProfessor();
         ListAluno listaAluno = new ListAluno();
         ListCurso listaCurso = new ListCurso();
         HashSumario listaSumarios = new HashSumario();
+        
+        File.loadData(listaSumarios,listaAluno,listaCurso,listaProf,listaUC);
 
         String opcao;
         try {
@@ -39,6 +43,7 @@ public class Menu {
 
                 switch (opcao) {
                     case "0":
+                        File.saveData(listaSumarios,listaAluno,listaCurso,listaProf,listaUC);
                         break;
                     case "1":
                         /*
