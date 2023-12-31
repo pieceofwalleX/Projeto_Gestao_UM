@@ -24,6 +24,9 @@ public class Aluno {
     public void setNome(String nome){
         this.nome = nome;
     }
+    public void setNumMec(String numMec){
+        this.numMec = numMec;
+    }
     public void setCurso(Curso curso){
         this.curso = curso;
     }
@@ -33,7 +36,7 @@ public class Aluno {
     public String getNome(){
         return nome;
     }
-    public String getNum(){
+    public String getNumMec(){
         return numMec;
     }
     public int getFaltas(){

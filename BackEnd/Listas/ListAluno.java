@@ -15,10 +15,19 @@ public class ListAluno {
     public void remove(String id){
         int i = 0;
         for(Aluno a: lista){
-            if(a.getNum().equals(id)){
+            if(a.getNumMec().equals(id)){
                 lista.remove(i);
+                return;
             }
             i++;
         }
+    }
+    public boolean inLista(String id){
+        for(Aluno a:lista){
+            if(a.getNumMec().equals(id)){
+                return true;
+            }
+        }
+        return false;
     }
 }

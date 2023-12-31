@@ -14,12 +14,14 @@ MenuProfessor
 	Normal
 		Criar Sumarios(Dar fix)
 	Regente
-		Adicionar Alunos ao curso
+		Bug Ao Entrar o programa Crasha
+		Adicionar Alunos ao curso/UC
 		Ver Assiduidade dos Aluno
 	Diretor
 		Alterar o nome do Curso(Ctrl c , Ctrl V)
 		Listar Professores e Alunos
 
-		
+Sistema de Ficheiros
+	Por Fazer		
 	
 	

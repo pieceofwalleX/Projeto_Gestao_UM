@@ -115,8 +115,7 @@ public class MenuProfessor {
 
 
 
-    public static void menu(HashSumario listaSumarios, ListUC listaUC, ListProfessore listaProf,ListCurso listaCurso,ListAluno listaAluno, String id)
-            throws InterruptedException {
+    public static void menu(HashSumario listaSumarios, ListUC listaUC, ListProfessore listaProf,ListCurso listaCurso,ListAluno listaAluno, String id) throws InterruptedException {
 
         String opcao;
         Professor p = new Professor();
@@ -131,14 +130,14 @@ public class MenuProfessor {
             System.out.print("\033[H\033[2J");
             System.out.flush();
             System.out.format("#..........Universidade.do.%sMinho%s..........#\n",Color.RED_BOLD,Color.RESET);
-            System.out.format("#......Professor.%s..[%s].......#\n",p.getNome(),p.getCargoString());
+            System.out.format("#......Professor..%s..[%s]......#\n",p.getNome(),p.getCargoString());
             System.out.println("#                                         #");
             System.out.println("#1. Criar Sumario                         #");
             System.out.println("#2. Lista de Sumarios                     #");
-            if(p.getCargoString() == "Regente"){
-                System.out.println("#3. Editar UC                             #");
-            }else if(p.getCargoString() == "Diretor"){
-                System.out.println("#3. Editar Curso                          #");
+            if(p.getCargoString().equals("Regente")){
+                System.out.println("#3. Menu Regente                          #");
+            }else if(p.getCargoString().equals("Diretor")){
+                System.out.println("#3. Menu Diretor                          #");
             }
             System.out.println("#                                         #");
             System.out.println("#0. Sair                                  #");
@@ -158,10 +157,12 @@ public class MenuProfessor {
                     printSumarios(listaSumarios,listaUC,listaProf,id);
                     break;
                 case "3":
-                    if(p.getCargoString() == "Regente"){
-                        //Menu Regente
-                    }else if(p.getCargoString() == "Diretor"){
+                    if(p.getCargoString().equals("Regente")){                        
+                        MenuRegente.menu(listaCurso, listaUC, listaProf, p);
+                    }else if(p.getCargoString().equals("Diretor")){
                         MenuDiretor.menu(listaCurso,listaUC,listaProf,listaAluno,p);
+                    }else{
+                        break;
                     }
                     break;
                 default:

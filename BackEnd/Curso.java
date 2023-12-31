@@ -86,6 +86,9 @@ public class Curso {
     public ListUC getListaUC(){
         return listaUC;
     }
+    public ListAluno getListaAluno(){
+        return listaAluno;
+    }
     public void listarSimplesUC(){
         int i = 0;
         ListUC tempLista = listaUC;
