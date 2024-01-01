@@ -11,10 +11,9 @@ MenuProfessor
 	Regente
 		Completo
 	Diretor
-		**Alterar o nome do Curso(Ctrl c , Ctrl V)**
-		**Listar Professores e Alunos**
+		Completo
 
 **Sistema de Ficheiros**
-	**Por Fazer**		
+	Completo		
 	
 	
