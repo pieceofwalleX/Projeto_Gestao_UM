@@ -37,6 +37,9 @@ public class Menu {
                 System.out.format("#%s1.%s Administracao               #\n", Color.BLUE, Color.RESET);
                 System.out.format("#%s2.%s Menu Professor              #\n", Color.BLUE, Color.RESET);
                 System.out.println("#                               #");
+                System.out.format("#%s3.%s Salvar Dados                #\n", Color.BLUE, Color.RESET);
+                System.out.format("#%s4.%s Carregar Dados              #\n", Color.BLUE, Color.RESET);
+                System.out.println("#                               #");
                 System.out.format("#%s0.%s Sair                        #\n", Color.BLUE, Color.RESET);
                 System.out.println("#...............................#");
                 opcao = in.next();
@@ -57,6 +60,20 @@ public class Menu {
                          * Muda para o Menu dos Professores
                          */
                         MenuProfessor.authProf(listaSumarios, listaUC, listaProf, listaCurso, listaAluno);
+                        break;
+                    case "3":
+                        File.saveData(listaSumarios, listaAluno, listaCurso, listaProf, listaUC);
+                        break;
+                    case "4":
+                        /*
+                        * Apagar os dados das Listas
+                        */
+                        listaSumarios = new HashSumario();
+                        listaAluno = new ListAluno();
+                        listaCurso = new ListCurso();
+                        listaProf = new ListProfessor();
+                        listaUC = new ListUC();
+                        File.loadData(listaSumarios, listaAluno, listaCurso, listaProf, listaUC);
                         break;
                     default:
                         System.err.format("%s#ERROR Opcao Invalida #%s\n", Color.RED, Color.RESET);

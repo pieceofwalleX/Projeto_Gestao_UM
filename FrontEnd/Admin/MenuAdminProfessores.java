@@ -269,7 +269,7 @@ public class MenuAdminProfessores {
             System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
             System.out.println("#......Gestao..Professores......#");
             System.out.println("#                               #");
-            System.out.println("#1. Registrar Professor        #");
+            System.out.println("#1. Registrar Professor         #");
             System.out.println("#2. Editar Dados Professor      #");
             System.out.println("#3. Listar Professores          #");
             System.out.println("#4. Eliminar Professor          #");
