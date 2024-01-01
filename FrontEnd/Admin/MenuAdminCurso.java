@@ -113,7 +113,11 @@ public class MenuAdminCurso {
                     System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
                     System.out.println("#.........Gestao..Curso.........#");
                     System.out.println("# Novo nome: ");
-                    c.setDesignacao(in.next());
+                    input = in.nextLine();
+                    if(!check.isString(input)){
+                        return;
+                    }
+                    c.setDesignacao(input);
                     System.out.println(Color.GREEN_BOLD + "# Nome do Curso trocado com Sucesso" + Color.RESET);
                     break;
                 case "2":

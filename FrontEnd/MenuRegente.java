@@ -21,26 +21,18 @@ public class MenuRegente {
         String input;
         System.out.format("#.....Universidade.do.%sMinho%s.....#\n", Color.RED_BOLD, Color.RESET);
         System.out.println("#.........Gestao..Curso.........#");
-        System.out.println("# ID: ");
-        input = in.next();
-
-        if(!check.isInteger(input)){
-            System.err.println("#ERROR Caracter Invalido");
-            aluno.setNumMec(input);
-            Thread.sleep(400);
-            return;
-        }
-        if(listaAluno.inLista(input)){
-            System.err.println("#ERROR Este Numero ja pertence a um Aluno");
-            Thread.sleep(400);
-            return;
-        }
-        aluno.setNumMec(input);
-
+        System.out.println("# Aluno ID: " + aluno.getNumMec());
+        //Limpar o Buffer
         in.nextLine();
-
+        
         System.out.println("# Nome:");
-        aluno.setNome(in.nextLine());
+        input = in.nextLine();
+
+        if(!check.isString(input)){
+            aluno.setNextNum(aluno.getNumMec());
+            return;
+        }
+        aluno.setNome(input);
 
         System.out.println("# Curso");
         listaCurso.listarCursosSimples();
@@ -48,13 +40,15 @@ public class MenuRegente {
         input = in.next();
 
         if(!check.isInteger(input)){
+            aluno.setNextNum(aluno.getNumMec());
             System.err.println("#ERROR Caracter Invalido");
             Thread.sleep(400);
             return;
         }
 
         curso = listaCurso.getCursoById(Integer.parseInt(input));
-        aluno.setCurso(listaCurso.getCursoById(Integer.parseInt(input)));
+        in.nextLine();
+        aluno.setCurso(curso);
         
         ListAluno listaAlunoCurso = curso.getListaAluno();
         listaAlunoCurso.adicionar(aluno);
@@ -69,6 +63,7 @@ public class MenuRegente {
 
      public static void gerirAluno(HashSumario listaSumarios, ListCurso listaCurso,ListAluno listaAluno,Professor p) throws InterruptedException{
         String opcao,input;
+        Curso curso = new Curso();
         do {
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -107,6 +102,8 @@ public class MenuRegente {
                         Thread.sleep(400);
                         return;
                     }
+                    curso = listaAluno.getAlunoById(input).getCurso();
+                    curso.removeAluno(input);
                     listaSumarios.removeAluno(input);
                     break;
                 default:

@@ -49,9 +49,11 @@ public class MenuProfessor {
         System.out.println("#UC: ");
         idUC = in.nextInt();
         inUCList = curso.getListaUC().checkID(idUC);
-        in.nextLine();
 
         if (inUCList) {
+            if(!curso.getListaUC().getUCById(idUC).inListaDocente(id)){
+                return;
+            }
             s.setIdDisciplina(idUC);
             s.setIdProfessor(id);
             System.out.println("#..............Tipo..Aula..............");
@@ -63,6 +65,7 @@ public class MenuProfessor {
             }
             s.setTipoAula(tipoAula);
             in.nextLine(); //Limpar o buffer
+            
             /*
              * Adicionar Conteudo
              * Aqui sera adicionado uma Lista de Alunos, sera usada a lista de Cursos
@@ -72,7 +75,7 @@ public class MenuProfessor {
              */
             ListAluno presencas = new ListAluno(curso.getListaAluno());// Criar uma copia da lista principal
             System.out.println("# Selecione os Alunos em Falta | Digite \"Continuar\" para Avancar");
-            presencas.listarSimples();
+            presencas.listarSimples(true);
             do{
             System.out.println("# ---");
             input = in.next();
@@ -85,6 +88,9 @@ public class MenuProfessor {
                 /*
                  * Verificar se o numero existe na lista
                  */
+                if(!presencas.inLista(input)){
+                    return;
+                }
                 if(!presencas.inLista(input)){
                     return;
                 }

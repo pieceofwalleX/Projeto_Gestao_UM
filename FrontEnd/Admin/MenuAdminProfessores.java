@@ -19,7 +19,7 @@ public class MenuAdminProfessores {
     static final Verification check = new Verification();
 
     public static void addProf(ListProfessor listaProfessore) throws InterruptedException {
-        String data;
+        String data,input;
         Professor u = new Professor();
 
         in.nextLine(); // Limpar o buffer
@@ -28,20 +28,26 @@ public class MenuAdminProfessores {
         System.out.println("#......Gestao..Professores.....#");
 
         System.out.println("# Numero do Professor: ");
-        if (!u.setNumMec(in.next())) {
+        input = in.next();
+        if (!u.setNumMec(input)) {
             return;
         }
 
         // Verificar se o Numero de Professor já Existe
-        if (listaProfessore.checkNumMec(u.getNumMec())) {
+        if (listaProfessore.checkNumMec(input)) {
             return;
         }
 
         // Limpar o buffer
         in.nextLine();
 
+
         System.out.println("# Nome do Professor: ");
-        u.setNome(in.nextLine());
+        input = in.nextLine();
+        if(!check.isString(input)){
+            return;
+        }
+        u.setNome(input);
 
         System.out.println("# Digite a data de Inicio (ddMMyyyy): ");
         data = in.nextLine();
@@ -86,6 +92,11 @@ public class MenuAdminProfessores {
         System.out.println("#......Eliminar.Professore......#");
         System.out.println("# Id: ");
         id = in.next();
+            
+        if(!check.isInteger(id)){
+            return;
+        }
+
         if (!listaProf.checkNumMec(id)) {
             System.err.println("#ERROR Nao foi possivel encontrar o professor");
             Thread.sleep(400);
@@ -190,13 +201,13 @@ public class MenuAdminProfessores {
                      * Verificamos se o input e um inteiro
                      */
                     if (!check.isInteger(input)) {
-                        return;
+                        break;
                     }
                     /*
                      * Verificar se o ID ja esta associado
                      */
                     if (listaProf.checkNumMec(input)) {
-                        return;
+                        break;
                     }
                     /*
                      * Se for valido , alterar o ID ao professor e
@@ -213,6 +224,11 @@ public class MenuAdminProfessores {
                     System.out.println("#......Gestao..Professores......#");
                     System.out.println("# Novo Nome: ");
                     input = in.nextLine();
+
+                    if(!check.isString(input)){
+                        break;
+                    }
+                    
                     p.setNome(input);
                     break;
                 case "3":

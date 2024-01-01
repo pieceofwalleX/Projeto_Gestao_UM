@@ -8,7 +8,6 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import BackEnd.Aluno;
-import BackEnd.Professor.Professor;
 import FrontEnd.Color;
 
 public class ListAluno implements Serializable{
@@ -24,7 +23,17 @@ public class ListAluno implements Serializable{
         lista.add(a);
     }
     public Aluno getAlunoById(String id){
-        return lista.get(Integer.parseInt(id) - 1);
+        for(Aluno a :lista){
+            if(a.getNumMec().equals(id)){
+                return a;
+            }
+        }
+        return null;
+    /*
+     * Nao se pode fazer isto return lista.get(Integer.parseInt(id) - 1);
+     * Porque a Lista De Presencas o Aluno numero 2 se nao tiver no mesmo curso que o primeir 
+     * Iria ser o primeiro Aluno na lista de presencas do Cruso 2 logo em vez de ser o Index 1 seria o 0
+     */
     }
     public void remove(String id){
         int i = 0;
@@ -47,11 +56,16 @@ public class ListAluno implements Serializable{
         }
         return false;
     }
-    public void listarSimples(){
+    public int listarSimples(boolean print){
+        int elementos = 0;
         for(Aluno a: lista){
-            System.out.format("# Numero: %s%s%s \n# Nome: %s \n",Color.PURPLE, a.getNumMec(),Color.RESET, a.getNome());
-            System.out.println("#.........................................#");
+            if(print){
+                System.out.format("# Numero: %s%s%s \n# Nome: %s \n",Color.PURPLE, a.getNumMec(),Color.RESET, a.getNome());
+                System.out.println("#.........................................#");
+            }
+            elementos++; 
         }
+        return elementos;
     }
     public ArrayList<Aluno> getLista(){
         return lista;

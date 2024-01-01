@@ -59,7 +59,7 @@ public class MenuAdministrador {
                 case "4":
                     System.out.format("#.....Universidade.do.%sMinho%s.....#\n",Color.RED_BOLD,Color.RESET);
                     System.out.println("#.........Administracao.........#");
-                    listaAluno.listarSimples();
+                    listaAluno.listarSimples(true);
                 default:
                     System.err.println("#ERROR Opcao Invalida #");
                     break;

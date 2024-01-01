@@ -89,6 +89,9 @@ public class ListProfessor implements Serializable{
             i++;
         }
     }
+    public ArrayList<Professor> getLista(){
+        return lista;
+    }
 
     /*
      * Ficheiros
